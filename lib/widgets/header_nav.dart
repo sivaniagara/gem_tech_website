@@ -20,13 +20,115 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop = MediaQuery.of(context).size.width >= 900;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isDesktop = screenWidth >= 900;
 
+    if (!isDesktop) {
+      // Mobile Top Bar: Transparent brand logo and sleek glass menu icon
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Left Logo
+            InkWell(
+              onTap: () => onNavSelected?.call('Home'),
+              borderRadius: BorderRadius.circular(16),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF00C6FF).withOpacity(0.4),
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.eco_rounded,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'ORO GEM',
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      letterSpacing: 0.8,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black87,
+                          blurRadius: 10,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Container(
+                    width: 5,
+                    height: 5,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF00C6FF),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Right Drawer Menu Button
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () => Scaffold.of(context).openEndDrawer(),
+                borderRadius: BorderRadius.circular(25),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0F172A).withOpacity(0.65),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.3),
+                      width: 1.2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.menu_rounded,
+                    size: 22,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    // Desktop Layout
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 60 : 20,
-        vertical: 16,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -41,7 +143,6 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Glowing Gradient Icon Box
                     Container(
                       width: 40,
                       height: 40,
@@ -67,7 +168,6 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    // Gradient ORO + GEM
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -98,7 +198,6 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
                           ),
                         ),
                         const SizedBox(width: 6),
-                        // Mini Tech Accent Dot
                         Container(
                           width: 6,
                           height: 6,
@@ -122,52 +221,48 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
           ),
 
           // Right Island: Desktop Nav Links
-          if (isDesktop)
-            _HeaderIsland(
-              isTransparent: isTransparent,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _NavLink(
-                    title: 'Home',
-                    isSelected: true,
-                    onTap: () => onNavSelected?.call('Home'),
-                  ),
-                  _NavLink(
-                    title: 'Features',
-                    onTap: () => onNavSelected?.call('Features'),
-                  ),
-                  _NavLink(
-                    title: 'Products',
-                    onTap: () => onNavSelected?.call('Products'),
-                  ),
-                  _NavLink(
-                    title: 'How it Works',
-                    onTap: () => onNavSelected?.call('How it Works'),
-                  ),
-                  _NavLink(
-                    title: 'AI System',
-                    isAi: true,
-                    onTap: () => onNavSelected?.call('AI System'),
-                  ),
-                ],
-              ),
-            )
-          else
-            // Mobile Menu Button Island
-            _HeaderIsland(
-              isTransparent: isTransparent,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.menu_rounded,
-                  size: 26,
-                  color: AppColors.textDark,
+          _HeaderIsland(
+            isTransparent: isTransparent,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _NavLink(
+                  title: 'Home',
+                  isSelected: true,
+                  onTap: () => onNavSelected?.call('Home'),
                 ),
-                onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-              ),
+                _NavLink(
+                  title: 'ORO GEM OS',
+                  onTap: () => onNavSelected?.call('ORO GEM OS'),
+                ),
+                _NavLink(
+                  title: 'Smart Water',
+                  onTap: () => onNavSelected?.call('Smart Water'),
+                ),
+                _NavLink(
+                  title: 'Fertigation',
+                  onTap: () => onNavSelected?.call('Fertigation'),
+                ),
+                _NavLink(
+                  title: 'Controllers',
+                  onTap: () => onNavSelected?.call('Controllers'),
+                ),
+                _NavLink(
+                  title: 'Sensors',
+                  onTap: () => onNavSelected?.call('Sensors'),
+                ),
+                _NavLink(
+                  title: 'Valves',
+                  onTap: () => onNavSelected?.call('Valves'),
+                ),
+                _NavLink(
+                  title: 'AI System',
+                  isAi: true,
+                  onTap: () => onNavSelected?.call('AI System'),
+                ),
+              ],
             ),
+          ),
         ],
       ),
     );
