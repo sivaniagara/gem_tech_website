@@ -171,40 +171,6 @@ const List<ValveModel> kValveModels = [
       'Durable construction for heavy continuous cycling',
     ],
   ),
-  ValveModel(
-    id: 'niagara_wlc_1p',
-    name: 'NIAGARA AWLC Water Level Controller',
-    category: 'Smart Water Control',
-    imagePath: 'assets/images/smart_water_controller_unit.png',
-    size: '1∅ Single Phase',
-    connection: 'Direct Pump Control',
-    pressure: '180V - 260V AC',
-    material: 'Microcontroller Enclosure',
-    description: 'Automatic water level controller monitoring overhead tank and sump levels to prevent dry run and water overflow.',
-    highlights: [
-      'Automatic pump ON/OFF based on water levels',
-      'Prevents water overflow & dry run pump damage',
-      '7-Segment digital display & voltage protection',
-      'Ideal for residential homes, villas, & apartments',
-    ],
-  ),
-  ValveModel(
-    id: 'niagara_wlc_3p_gsm',
-    name: 'NIAGARA AWPC 3-Phase LCD GSM Controller',
-    category: 'Smart Water Control',
-    imagePath: 'assets/images/smart_water_control_models.png',
-    size: '3∅ Three Phase (Up to 15 HP)',
-    connection: 'Indirect Load / Starter',
-    pressure: '300V - 470V AC',
-    material: 'Industrial Grade Enclosure',
-    description: 'Flagship 3-phase smart pump controller with LCD display, single-phasing preventer, and GSM mobile automation.',
-    highlights: [
-      'Built-in digital single phasing preventer',
-      'Current sensing dry run & overload protection',
-      'GSM SMS / mobile app remote monitoring',
-      'Time scheduling & automatic pump control',
-    ],
-  ),
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -221,8 +187,6 @@ _CategoryStyle _styleFor(String category) {
   switch (category) {
     case 'Mainline':
       return const _CategoryStyle(AppColors.primaryTeal, Icons.water_rounded);
-    case 'Smart Water Control':
-      return const _CategoryStyle(Color(0xFF00ADFF), Icons.water_drop_rounded);
     case 'Pressure Control':
       return const _CategoryStyle(Color(0xFF6C5CE7), Icons.speed_rounded);
     case 'Pilots & Solenoids':
@@ -253,7 +217,6 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
   final List<String> categories = [
     'All',
     'Mainline',
-    'Smart Water Control',
     'Pressure Control',
     'Pilots & Solenoids',
     'Filtration',
@@ -954,13 +917,20 @@ class _ValveCardState extends State<_ValveCard> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
-        color: AppColors.bgOffWhite,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.borderLight),
+        color: const Color(0xFFF8FAFC),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 18, color: color),
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.10),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, size: 15, color: color),
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
@@ -969,16 +939,24 @@ class _ValveCardState extends State<_ValveCard> {
               children: [
                 Text(
                   label,
-                  style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                      .copyWith(fontSize: 10, ),
+                  style: const TextStyle(
+                    fontSize: 9.5,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF64748B),
+                    letterSpacing: 0.4,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   value,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.badgeText(color: AppColors.textDark)
-                      .copyWith(fontSize: 12.5, height: 1.25),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF1E293B),
+                    height: 1.25,
+                  ),
                 ),
               ],
             ),
@@ -993,24 +971,44 @@ class _ValveCardState extends State<_ValveCard> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
       curve: Curves.easeOut,
-      height: 48,
+      height: 46,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         gradient: _hover
             ? LinearGradient(
-          colors: [style.color, Color.lerp(style.color, AppColors.accentCyan, 0.5)!],
-        )
+                colors: [style.color, Color.lerp(style.color, AppColors.accentCyan, 0.6)!],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              )
             : null,
-        color: _hover ? null : style.color.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
+        color: _hover ? null : style.color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: _hover ? Colors.transparent : style.color.withValues(alpha: 0.28),
+          width: 1.2,
+        ),
         boxShadow: _hover
-            ? AppShadows.md
+            ? [
+                BoxShadow(
+                  color: style.color.withValues(alpha: 0.35),
+                  blurRadius: 14,
+                  offset: const Offset(0, 6),
+                ),
+              ]
             : [],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Specs & Details', style: AppTextStyles.buttonText(color: fg)),
+          Text(
+            'Specs & Details',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: fg,
+              letterSpacing: 0.2,
+            ),
+          ),
           const SizedBox(width: 8),
           AnimatedSlide(
             duration: const Duration(milliseconds: 250),

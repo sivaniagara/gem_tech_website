@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 import '../theme/app_design.dart';
+import 'gem_logo_painter.dart';
 
 class FooterSection extends StatelessWidget {
   final Function(String)? onNavSelected;
@@ -202,23 +203,20 @@ class FooterSection extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 38,
-              height: 38,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
-                ),
-                borderRadius: BorderRadius.circular(AppRadius.md),
-              ),
-              child: const Icon(Icons.eco_rounded, color: Colors.white, size: 22),
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              'ORO GEM TECH',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
                 color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.12),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: const GemLogoWidget(
+                height: 52,
               ),
             ),
           ],

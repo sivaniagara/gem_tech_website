@@ -535,14 +535,48 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                     _buildKeyStatsBar(isDesktop),
                     const SizedBox(height: 48),
                     _buildFilterBar(),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     Center(
-                      child: Text(
-                        'Showing ${filteredProducts.length} product${filteredProducts.length == 1 ? '' : 's'}',
-                        style: AppTextStyles.cardDescription().copyWith(fontSize: 13),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: const Color(0xFFE2E8F0)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.03),
+                              blurRadius: 10,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 8,
+                              height: 8,
+                              decoration: const BoxDecoration(
+                                color: AppColors.primaryTeal,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Showing ${filteredProducts.length} ${selectedCategory == 'All' ? 'ORO GEM' : selectedCategory} product${filteredProducts.length == 1 ? '' : 's'}',
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF475569),
+                                letterSpacing: 0.2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 28),
+                    const SizedBox(height: 32),
                     // Product Showcase Grid
                     LayoutBuilder(
                       builder: (context, constraints) {
@@ -559,7 +593,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                           itemCount: filteredProducts.length,
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: crossAxisCount,
-                            mainAxisExtent: 520,
+                            mainAxisExtent: 535,
                             crossAxisSpacing: 28,
                             mainAxisSpacing: 28,
                           ),
@@ -1417,16 +1451,23 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
       builder: (context, c) {
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(minWidth: c.maxWidth),
             child: Center(
               child: Container(
-                padding: const EdgeInsets.all(6),
+                padding: const EdgeInsets.all(7),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(AppRadius.xl),
-                  border: Border.all(color: AppColors.borderLight),
-                  boxShadow: AppShadows.md,
+                  color: const Color(0xFFF8FAFC),
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: const Color(0xFFE2E8F0), width: 1.2),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF0F172A).withOpacity(0.04),
+                      blurRadius: 20,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -1454,17 +1495,26 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           curve: Curves.easeOut,
-          margin: const EdgeInsets.symmetric(horizontal: 2),
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
+          margin: const EdgeInsets.symmetric(horizontal: 3),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           decoration: BoxDecoration(
             gradient: isSelected
                 ? const LinearGradient(
-              colors: [AppColors.primaryTeal, AppColors.accentCyan],
-            )
+                    colors: [AppColors.primaryTeal, Color(0xFF0284C7)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  )
                 : null,
-            borderRadius: BorderRadius.circular(AppRadius.xl),
+            color: isSelected ? null : Colors.transparent,
+            borderRadius: BorderRadius.circular(24),
             boxShadow: isSelected
-                ? AppShadows.md
+                ? [
+                    BoxShadow(
+                      color: AppColors.primaryTeal.withOpacity(0.35),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
                 : [],
           ),
           child: Row(
@@ -1473,30 +1523,35 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
               Icon(
                 icon,
                 size: 17,
-                color: isSelected ? Colors.white : AppColors.textMuted,
+                color: isSelected ? Colors.white : const Color(0xFF64748B),
               ),
               const SizedBox(width: 8),
               Text(
                 cat,
-                style: AppTextStyles.navLink(isSelected: true).copyWith(
+                style: TextStyle(
                   fontSize: 14,
-                  color: isSelected ? Colors.white : AppColors.textMedium,
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+                  color: isSelected ? Colors.white : const Color(0xFF334155),
+                  letterSpacing: -0.1,
                 ),
               ),
               const SizedBox(width: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? Colors.white.withOpacity(0.25)
-                      : AppColors.bgLightGrey,
-                  borderRadius: BorderRadius.circular(AppRadius.md),
+                      ? Colors.white.withOpacity(0.24)
+                      : const Color(0xFFE2E8F0),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
                   '$count',
-                  style: AppTextStyles.badgeText(
-                    color: isSelected ? Colors.white : AppColors.textMuted,
-                  ).copyWith(fontSize: 11),
+                  style: TextStyle(
+                    fontSize: 11.5,
+                    fontWeight: FontWeight.w700,
+                    color: isSelected ? Colors.white : const Color(0xFF475569),
+                  ),
                 ),
               ),
             ],
@@ -1770,7 +1825,7 @@ class _EcosystemCardState extends State<_EcosystemCard> {
   void _openDetails() {
     showDialog(
       context: context,
-      barrierColor: AppColors.bgDarkSlate.withOpacity(0.6),
+      barrierColor: AppColors.bgDarkSlate.withOpacity(0.65),
       builder: (_) => _EcosystemDetailsDialog(item: widget.item),
     );
   }
@@ -1787,18 +1842,37 @@ class _EcosystemCardState extends State<_EcosystemCard> {
       child: GestureDetector(
         onTap: _openDetails,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 280),
+          curve: Curves.easeOutCubic,
           transform: Matrix4.translationValues(0, _hover ? -8 : 0, 0),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(AppRadius.xl),
+            borderRadius: BorderRadius.circular(24),
             border: Border.all(
-              color: _hover ? style.color.withOpacity(0.55) : AppColors.borderLight,
-              width: _hover ? 1.5 : 1,
+              color: _hover ? style.color.withOpacity(0.65) : const Color(0xFFE2E8F0),
+              width: _hover ? 1.8 : 1.2,
             ),
-            boxShadow: AppShadows.sm,
+            boxShadow: [
+              if (_hover) ...[
+                BoxShadow(
+                  color: style.color.withOpacity(0.20),
+                  blurRadius: 28,
+                  offset: const Offset(0, 14),
+                ),
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.06),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ] else ...[
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.04),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                ),
+              ],
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1810,18 +1884,32 @@ class _EcosystemCardState extends State<_EcosystemCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        item.name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.cardTitle().copyWith(fontSize: 18, height: 1.25),
+                      AnimatedDefaultTextStyle(
+                        duration: const Duration(milliseconds: 200),
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w800,
+                          height: 1.25,
+                          color: _hover ? style.color : const Color(0xFF0F172A),
+                          letterSpacing: -0.2,
+                        ),
+                        child: Text(
+                          item.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         item.description,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.cardDescription().copyWith(fontSize: 13.5),
+                        style: const TextStyle(
+                          fontSize: 13.5,
+                          height: 1.45,
+                          color: Color(0xFF475569),
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       const SizedBox(height: 16),
                       IntrinsicHeight(
@@ -1863,38 +1951,51 @@ class _EcosystemCardState extends State<_EcosystemCard> {
 
   Widget _buildImageArea(EcosystemModel item, _CategoryStyle style) {
     return SizedBox(
-      height: 230,
+      height: 235,
       child: Stack(
         fit: StackFit.expand,
         children: [
+          // Studio background spotlight
           Container(
             decoration: BoxDecoration(
               gradient: RadialGradient(
-                center: const Alignment(0, 0.1),
-                radius: 0.95,
-                colors: [Colors.white, style.color.withOpacity(0.12)],
+                center: const Alignment(0, -0.2),
+                radius: 0.9,
+                colors: [
+                  style.color.withOpacity(0.14),
+                  const Color(0xFFF8FAFC),
+                ],
               ),
             ),
           ),
+          // Backplate glowing aura
           Center(
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOut,
-              width: _hover ? 210 : 175,
-              height: _hover ? 210 : 175,
+              width: _hover ? 215 : 180,
+              height: _hover ? 215 : 180,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: style.color.withOpacity(_hover ? 0.16 : 0.10),
+                color: style.color.withOpacity(_hover ? 0.20 : 0.10),
+                boxShadow: [
+                  BoxShadow(
+                    color: style.color.withOpacity(_hover ? 0.25 : 0.08),
+                    blurRadius: _hover ? 30 : 15,
+                    spreadRadius: _hover ? 5 : 0,
+                  ),
+                ],
               ),
             ),
           ),
+          // Product Image with 3D Float
           Positioned.fill(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 30, 24, 18),
+              padding: const EdgeInsets.fromLTRB(24, 28, 24, 18),
               child: AnimatedScale(
-                scale: _hover ? 1.08 : 1,
+                scale: _hover ? 1.08 : 1.0,
                 duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOut,
+                curve: Curves.easeOutCubic,
                 child: Image.asset(
                   item.imagePath,
                   fit: BoxFit.contain,
@@ -1905,36 +2006,69 @@ class _EcosystemCardState extends State<_EcosystemCard> {
               ),
             ),
           ),
+          // Category Tag (Top-Left)
           Positioned(
-            top: 16,
-            left: 16,
+            top: 14,
+            left: 14,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                boxShadow: AppShadows.sm,
+                color: Colors.white.withOpacity(0.92),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: style.color.withOpacity(0.20)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.04),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(style.icon, size: 14, color: style.color),
+                  Container(
+                    width: 7,
+                    height: 7,
+                    decoration: BoxDecoration(
+                      color: style.color,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
                   const SizedBox(width: 6),
                   Text(
-                    item.category,
-                    style: AppTextStyles.badgeText(color: style.color).copyWith(fontSize: 12),
+                    item.category.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w800,
+                      color: style.color,
+                      letterSpacing: 0.5,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
+          // Tech Index Badge (Top-Right)
           Positioned(
-            top: 10,
-            right: 18,
-            child: Text(
-              widget.index.toString().padLeft(2, '0'),
-              style: AppTextStyles.sectionTitle(isDesktop: true)
-                  .copyWith(fontSize: 30, color: style.color.withOpacity(0.22)),
+            top: 14,
+            right: 14,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: style.color.withOpacity(0.12),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: style.color.withOpacity(0.25)),
+              ),
+              child: Text(
+                '#${widget.index.toString().padLeft(2, '0')}',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: style.color,
+                  letterSpacing: 0.5,
+                ),
+              ),
             ),
           ),
         ],
@@ -1946,13 +2080,20 @@ class _EcosystemCardState extends State<_EcosystemCard> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
-        color: AppColors.bgOffWhite,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.borderLight),
+        color: const Color(0xFFF8FAFC),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 18, color: color),
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.10),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, size: 15, color: color),
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
@@ -1961,16 +2102,24 @@ class _EcosystemCardState extends State<_EcosystemCard> {
               children: [
                 Text(
                   label,
-                  style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                      .copyWith(fontSize: 10, ),
+                  style: const TextStyle(
+                    fontSize: 9.5,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF64748B),
+                    letterSpacing: 0.4,
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   value,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.badgeText(color: AppColors.textDark)
-                      .copyWith(fontSize: 12.5, height: 1.25),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF1E293B),
+                    height: 1.25,
+                  ),
                 ),
               ],
             ),
@@ -1985,24 +2134,44 @@ class _EcosystemCardState extends State<_EcosystemCard> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
       curve: Curves.easeOut,
-      height: 48,
+      height: 46,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         gradient: _hover
             ? LinearGradient(
-          colors: [style.color, Color.lerp(style.color, AppColors.accentCyan, 0.5)!],
-        )
+                colors: [style.color, Color.lerp(style.color, AppColors.accentCyan, 0.6)!],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              )
             : null,
         color: _hover ? null : style.color.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: _hover ? Colors.transparent : style.color.withOpacity(0.28),
+          width: 1.2,
+        ),
         boxShadow: _hover
-            ? AppShadows.md
+            ? [
+                BoxShadow(
+                  color: style.color.withOpacity(0.35),
+                  blurRadius: 14,
+                  offset: const Offset(0, 6),
+                ),
+              ]
             : [],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Specs & Details', style: AppTextStyles.buttonText(color: fg)),
+          Text(
+            'Specs & Details',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: fg,
+              letterSpacing: 0.2,
+            ),
+          ),
           const SizedBox(width: 8),
           AnimatedSlide(
             duration: const Duration(milliseconds: 250),

@@ -1032,26 +1032,47 @@ class _SensorCardState extends State<_SensorCard> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
-        color: AppColors.bgOffWhite,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.borderLight),
+        color: const Color(0xFFF8FAFC),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 18, color: color),
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.10),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, size: 15, color: color),
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(label,
-                    style: AppTextStyles.badgeText(color: AppColors.textMuted).copyWith(fontSize: 10, )),
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 9.5,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF64748B),
+                    letterSpacing: 0.4,
+                  ),
+                ),
                 const SizedBox(height: 2),
-                Text(value,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.badgeText(color: AppColors.textDark).copyWith(fontSize: 12.5, height: 1.25)),
+                Text(
+                  value,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF1E293B),
+                    height: 1.25,
+                  ),
+                ),
               ],
             ),
           ),
@@ -1065,20 +1086,44 @@ class _SensorCardState extends State<_SensorCard> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
       curve: Curves.easeOut,
-      height: 48,
+      height: 46,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        gradient: _hover ? LinearGradient(colors: [s.color, Color.lerp(s.color, AppColors.accentCyan, 0.5)!]) : null,
-        color: _hover ? null : s.color.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
+        gradient: _hover
+            ? LinearGradient(
+                colors: [s.color, Color.lerp(s.color, AppColors.accentCyan, 0.6)!],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              )
+            : null,
+        color: _hover ? null : s.color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: _hover ? Colors.transparent : s.color.withValues(alpha: 0.28),
+          width: 1.2,
+        ),
         boxShadow: _hover
-            ? AppShadows.md
+            ? [
+                BoxShadow(
+                  color: s.color.withValues(alpha: 0.35),
+                  blurRadius: 14,
+                  offset: const Offset(0, 6),
+                ),
+              ]
             : [],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Details & Ordering', style: AppTextStyles.buttonText(color: fg)),
+          Text(
+            'Details & Ordering',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: fg,
+              letterSpacing: 0.2,
+            ),
+          ),
           const SizedBox(width: 8),
           AnimatedSlide(
             duration: const Duration(milliseconds: 250),

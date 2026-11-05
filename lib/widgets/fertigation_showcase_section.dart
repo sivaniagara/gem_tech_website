@@ -16,7 +16,7 @@ import '../theme/app_design.dart';
 const String _kHeroImage = 'assets/images/nutriflow_hero.png';
 const String _k3ChImage = 'assets/images/nutriflow_3ch_model.png';
 const String _k6ChImage = 'assets/images/nutriflow_6ch_model.png';
-const String _kControllerImage = 'assets/images/nutriflow_controller.png';
+const String _kControllerImage = 'assets/images/orogem_master_large.png';
 const String _kConceptImage = 'assets/images/fertigation_concept.png';
 
 class FertigationOrderItem {

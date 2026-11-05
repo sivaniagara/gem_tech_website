@@ -88,11 +88,6 @@ class AboutSection extends StatelessWidget {
               trailingIcon: Icons.arrow_forward_rounded,
               onPressed: () => onNavSelected?.call('ORO GEM OS'),
             ),
-            AppButton(
-              'Find your system',
-              style: AppButtonStyle.secondary,
-              onPressed: () => onNavSelected?.call('Selector'),
-            ),
           ],
         ),
       ],
@@ -419,12 +414,6 @@ class AboutSection extends StatelessWidget {
           'Become a dealer / partner',
           trailingIcon: Icons.handshake_rounded,
           onPressed: onBecomePartner,
-        ),
-        AppButton(
-          'Find your system',
-          style: AppButtonStyle.secondary,
-          onDark: true,
-          onPressed: () => onNavSelected?.call('Selector'),
         ),
       ],
     );

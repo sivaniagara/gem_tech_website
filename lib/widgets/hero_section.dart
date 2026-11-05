@@ -391,11 +391,11 @@ class _HeroSectionState extends State<HeroSection>
                             ),
                             PressableScale(
                               child: AppButton(
-                                'Find your system',
+                                'Smart Water',
                                 style: AppButtonStyle.secondary,
                                 onDark: true,
                                 onPressed: () =>
-                                    widget.onNavSelected?.call('Selector'),
+                                    widget.onNavSelected?.call('Smart Water'),
                               ),
                             ),
                             TextButton.icon(

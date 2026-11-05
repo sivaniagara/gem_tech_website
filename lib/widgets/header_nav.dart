@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import 'gem_logo_painter.dart';
 import 'motion.dart';
 import '../theme/app_design.dart';
 
@@ -34,7 +35,6 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
     'Controllers',
     'Sensors',
     'Valves',
-    'AI System',
   ];
 
   @override
@@ -66,35 +66,26 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          PressableScale(
-            hoverScale: 1.03,
-            child: InkWell(
-              onTap: () => onNavSelected?.call('Home'),
-              borderRadius: BorderRadius.circular(16),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const _LogoMark(size: 36, radius: 10, iconSize: 20),
-                  const SizedBox(width: 8),
-                  const Text(
-                    'ORO GEM',
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                      letterSpacing: 0.8,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black87,
-                          blurRadius: 10,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
+          _HeaderIsland(
+            isTransparent: isTransparent,
+            child: PressableScale(
+              hoverScale: 1.03,
+              child: InkWell(
+                onTap: () => onNavSelected?.call('Home'),
+                borderRadius: BorderRadius.circular(20),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      GemLogoWidget(
+                        height: 38,
+                      ),
+                      SizedBox(width: 6),
+                      _PulseDot(size: 5),
+                    ],
                   ),
-                  const SizedBox(width: 4),
-                  const _PulseDot(size: 5),
-                ],
+                ),
               ),
             ),
           ),
@@ -139,7 +130,7 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildDesktop(BuildContext context, double width) {
     // Tighter spacing on narrow desktops so 8 links never overflow.
     final compact = width < 1320;
-    // Below this width only the logo mark is shown so 9 links still fit.
+    // Below this width only the logo mark is shown so 8 links still fit.
     final tight = width < 1100;
     final showCta = width >= 1440 && onGetAppPressed != null;
 
@@ -155,43 +146,17 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
               hoverScale: 1.03,
               child: InkWell(
                 onTap: () => onNavSelected?.call('Home'),
-                borderRadius: BorderRadius.circular(16),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                borderRadius: BorderRadius.circular(20),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const _LogoMark(size: 40, radius: 12, iconSize: 24),
-                      if (!tight) ...[
-                        const SizedBox(width: 12),
-                        ShaderMask(
-                          shaderCallback: (bounds) => const LinearGradient(
-                            colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ).createShader(bounds),
-                          child: const Text(
-                            'ORO',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                              letterSpacing: 0.8,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        const Text(
-                          'GEM',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.textDark,
-                          ),
-                        ),
-                        const SizedBox(width: 6),
-                        const _PulseDot(size: 6),
-                      ],
+                      GemLogoWidget(
+                        height: 52,
+                      ),
+                      SizedBox(width: 8),
+                      _PulseDot(size: 6),
                     ],
                   ),
                 ),
@@ -216,7 +181,6 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
                           compact: compact,
                           tight: tight,
                           isSelected: title == activeItem,
-                          isAi: title == 'AI System',
                           onTap: () => onNavSelected?.call(title),
                         ),
                       if (showCta) ...[
@@ -236,42 +200,6 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
 }
 
 // ───────────────────────── Pieces ─────────────────────────
-
-class _LogoMark extends StatelessWidget {
-  final double size;
-  final double radius;
-  final double iconSize;
-
-  const _LogoMark({
-    required this.size,
-    required this.radius,
-    required this.iconSize,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(radius),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF00C6FF).withValues(alpha: 0.4),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Icon(Icons.eco_rounded, color: Colors.white, size: iconSize),
-    );
-  }
-}
 
 /// The small cyan dot after the logo; softly pulses like a "live" indicator.
 class _PulseDot extends StatefulWidget {
@@ -407,7 +335,6 @@ class _HeaderIsland extends StatelessWidget {
 class _NavLink extends StatefulWidget {
   final String title;
   final bool isSelected;
-  final bool isAi;
   final bool compact;
   final bool tight;
   final VoidCallback? onTap;
@@ -415,7 +342,6 @@ class _NavLink extends StatefulWidget {
   const _NavLink({
     required this.title,
     this.isSelected = false,
-    this.isAi = false,
     this.compact = false,
     this.tight = false,
     this.onTap,
@@ -459,23 +385,6 @@ class _NavLinkState extends State<_NavLink> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (widget.isAi) ...[
-                    AnimatedRotation(
-                      turns: isHovered ? 0.25 : 0,
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeOutBack,
-                      child: Icon(
-                        Icons.auto_awesome_rounded,
-                        size: 15,
-                        color: active
-                            ? Colors.white
-                            : (isHovered
-                            ? const Color(0xFF0072FF)
-                            : const Color(0xFF00C6FF)),
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                  ],
                   AnimatedDefaultTextStyle(
                     duration: const Duration(milliseconds: 200),
                     style: AppTextStyles.navLink(isSelected: active || isHovered)
