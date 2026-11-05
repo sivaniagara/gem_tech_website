@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/app_design.dart';
 
 // ─────────────────────────────────────────────────────────────
 //  NUTRIFLOW™ 400 - ASSETS (rename your images to these names in assets/images/)
@@ -300,10 +301,10 @@ class _FertigationShowcaseSectionState
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
-            color: const Color(0xFF00ADFF).withOpacity(0.18),
-            borderRadius: BorderRadius.circular(20),
+            color: const Color(0xFF00ADFF).withValues(alpha: 0.18),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             border: Border.all(
-              color: const Color(0xFF00ADFF).withOpacity(0.4),
+              color: const Color(0xFF00ADFF).withValues(alpha: 0.4),
             ),
           ),
           child: const Row(
@@ -312,12 +313,11 @@ class _FertigationShowcaseSectionState
               Icon(Icons.science_rounded, size: 16, color: Color(0xFF00ADFF)),
               SizedBox(width: 8),
               Text(
-                'SMART FERTIGATION SYSTEM',
+                'Smart fertigation system',
                 style: TextStyle(
                   color: Color(0xFF00ADFF),
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
-                  letterSpacing: 1.2,
                 ),
               ),
             ],
@@ -374,18 +374,12 @@ class _FertigationShowcaseSectionState
     return Container(
       height: 320,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.04),
-        borderRadius: BorderRadius.circular(24),
+        color: Colors.white.withValues(alpha: 0.04),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(
-          color: Colors.white.withOpacity(0.12),
+          color: Colors.white.withValues(alpha: 0.12),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            blurRadius: 30,
-            offset: const Offset(0, 10),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       clipBehavior: Clip.antiAlias,
       child: Stack(
@@ -407,8 +401,8 @@ class _FertigationShowcaseSectionState
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(12),
+                color: Colors.black.withValues(alpha: 0.7),
+                borderRadius: BorderRadius.circular(AppRadius.md),
                 border: Border.all(color: Colors.white24),
               ),
               child: const Row(
@@ -467,7 +461,7 @@ class _FertigationShowcaseSectionState
           child: Column(
             children: [
               Text(
-                'CORE ADVANTAGES',
+                'Core advantages',
                 style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
               ),
               const SizedBox(height: 6),
@@ -497,10 +491,10 @@ class _FertigationShowcaseSectionState
               children: pillars
                   .map(
                     (p) => SizedBox(
-                      width: cardWidth,
-                      child: _buildPillarCard(p),
-                    ),
-                  )
+                  width: cardWidth,
+                  child: _buildPillarCard(p),
+                ),
+              )
                   .toList(),
             );
           },
@@ -514,15 +508,9 @@ class _FertigationShowcaseSectionState
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -530,8 +518,8 @@ class _FertigationShowcaseSectionState
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: p.color.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(14),
+              color: p.color.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Icon(p.icon, color: p.color, size: 28),
           ),
@@ -572,14 +560,8 @@ class _FertigationShowcaseSectionState
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.15),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        boxShadow: AppShadows.md,
       ),
       padding: EdgeInsets.all(isDesktop ? 40 : 24),
       child: Column(
@@ -590,7 +572,7 @@ class _FertigationShowcaseSectionState
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF10B981).withOpacity(0.2),
+                  color: const Color(0xFF10B981).withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -605,12 +587,11 @@ class _FertigationShowcaseSectionState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'AGRONOMIC INSIGHTS',
+                      'Agronomic insights',
                       style: TextStyle(
                         color: Color(0xFF10B981),
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 1.2,
                       ),
                     ),
                     Text(
@@ -631,9 +612,9 @@ class _FertigationShowcaseSectionState
             height: 180,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.04),
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: Colors.white.withOpacity(0.1)),
+              color: Colors.white.withValues(alpha: 0.04),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
             ),
             clipBehavior: Clip.antiAlias,
             child: Stack(
@@ -644,10 +625,10 @@ class _FertigationShowcaseSectionState
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) =>
                         _buildImagePlaceholder(
-                      icon: Icons.schema_rounded,
-                      title: 'Root Zone Fertigation Concept',
-                      subtitle: 'Place fertigation_concept.png in assets/images/',
-                    ),
+                          icon: Icons.schema_rounded,
+                          title: 'Root Zone Fertigation Concept',
+                          subtitle: 'Place fertigation_concept.png in assets/images/',
+                        ),
                   ),
                 ),
                 Positioned(
@@ -656,9 +637,9 @@ class _FertigationShowcaseSectionState
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF10B981).withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: const Color(0xFF10B981).withOpacity(0.4)),
+                      color: const Color(0xFF10B981).withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(AppRadius.md),
+                      border: Border.all(color: const Color(0xFF10B981).withValues(alpha: 0.4)),
                     ),
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
@@ -772,9 +753,9 @@ class _FertigationShowcaseSectionState
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        color: Colors.white.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -797,7 +778,7 @@ class _FertigationShowcaseSectionState
           ),
           const SizedBox(height: 14),
           ...points.map(
-            (pt) => Padding(
+                (pt) => Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -835,7 +816,7 @@ class _FertigationShowcaseSectionState
           child: Column(
             children: [
               Text(
-                'SYSTEM VARIANTS',
+                'System variants',
                 style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
               ),
               const SizedBox(height: 6),
@@ -861,15 +842,9 @@ class _FertigationShowcaseSectionState
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(AppRadius.xl),
               border: Border.all(color: AppColors.borderLight),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.04),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+              boxShadow: AppShadows.sm,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -885,13 +860,7 @@ class _FertigationShowcaseSectionState
                       color: isSelected ? model.themeColor : Colors.transparent,
                       borderRadius: BorderRadius.circular(25),
                       boxShadow: isSelected
-                          ? [
-                              BoxShadow(
-                                color: model.themeColor.withOpacity(0.3),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ]
+                          ? AppShadows.sm
                           : null,
                     ),
                     child: Row(
@@ -927,38 +896,32 @@ class _FertigationShowcaseSectionState
             key: ValueKey(_selectedModelIndex),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: currentModel.themeColor.withOpacity(0.3), width: 1.5),
-              boxShadow: [
-                BoxShadow(
-                  color: currentModel.themeColor.withOpacity(0.08),
-                  blurRadius: 24,
-                  offset: const Offset(0, 8),
-                ),
-              ],
+              borderRadius: BorderRadius.circular(AppRadius.xl),
+              border: Border.all(color: currentModel.themeColor.withValues(alpha: 0.3), width: 1.5),
+              boxShadow: AppShadows.md,
             ),
             padding: EdgeInsets.all(isDesktop ? 36 : 24),
             child: isDesktop
                 ? Row(
-                    children: [
-                      Expanded(
-                        flex: 12,
-                        child: _buildModelInfoLeft(currentModel),
-                      ),
-                      const SizedBox(width: 40),
-                      Expanded(
-                        flex: 10,
-                        child: _buildModelImageRight(currentModel),
-                      ),
-                    ],
-                  )
+              children: [
+                Expanded(
+                  flex: 12,
+                  child: _buildModelInfoLeft(currentModel),
+                ),
+                const SizedBox(width: 40),
+                Expanded(
+                  flex: 10,
+                  child: _buildModelImageRight(currentModel),
+                ),
+              ],
+            )
                 : Column(
-                    children: [
-                      _buildModelInfoLeft(currentModel),
-                      const SizedBox(height: 24),
-                      _buildModelImageRight(currentModel),
-                    ],
-                  ),
+              children: [
+                _buildModelInfoLeft(currentModel),
+                const SizedBox(height: 24),
+                _buildModelImageRight(currentModel),
+              ],
+            ),
           ),
         ),
       ],
@@ -974,8 +937,8 @@ class _FertigationShowcaseSectionState
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
-                color: model.themeColor.withOpacity(0.12),
-                borderRadius: BorderRadius.circular(12),
+                color: model.themeColor.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
               child: Text(
                 model.ratio,
@@ -1024,7 +987,7 @@ class _FertigationShowcaseSectionState
         ),
         const SizedBox(height: 10),
         ...model.specs.map(
-          (spec) => Padding(
+              (spec) => Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1054,7 +1017,7 @@ class _FertigationShowcaseSectionState
       height: 280,
       decoration: BoxDecoration(
         color: AppColors.bgLightGrey,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.borderLight),
       ),
       clipBehavior: Clip.antiAlias,
@@ -1107,15 +1070,9 @@ class _FertigationShowcaseSectionState
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       padding: EdgeInsets.all(isDesktop ? 36 : 24),
       child: Column(
@@ -1131,7 +1088,7 @@ class _FertigationShowcaseSectionState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'INTELLIGENT CONTROLLER',
+                        'Intelligent controller',
                         style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
                       ),
                       const SizedBox(height: 6),
@@ -1149,7 +1106,7 @@ class _FertigationShowcaseSectionState
                         height: 220,
                         decoration: BoxDecoration(
                           color: AppColors.bgLightGrey,
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(AppRadius.lg),
                           border: Border.all(color: AppColors.borderLight),
                         ),
                         clipBehavior: Clip.antiAlias,
@@ -1159,10 +1116,10 @@ class _FertigationShowcaseSectionState
                             fit: BoxFit.contain,
                             errorBuilder: (context, error, stackTrace) =>
                                 _buildImagePlaceholder(
-                              icon: Icons.developer_board_rounded,
-                              title: 'Fertigation Controller',
-                              subtitle: 'Place nutriflow_controller.png in assets/images/',
-                            ),
+                                  icon: Icons.developer_board_rounded,
+                                  title: 'Fertigation Controller',
+                                  subtitle: 'Place nutriflow_controller.png in assets/images/',
+                                ),
                           ),
                         ),
                       ),
@@ -1185,7 +1142,7 @@ class _FertigationShowcaseSectionState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'INTELLIGENT CONTROLLER',
+                  'Intelligent controller',
                   style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
                 ),
                 const SizedBox(height: 6),
@@ -1203,7 +1160,7 @@ class _FertigationShowcaseSectionState
                   height: 200,
                   decoration: BoxDecoration(
                     color: AppColors.bgLightGrey,
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
                     border: Border.all(color: AppColors.borderLight),
                   ),
                   clipBehavior: Clip.antiAlias,
@@ -1213,10 +1170,10 @@ class _FertigationShowcaseSectionState
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) =>
                           _buildImagePlaceholder(
-                        icon: Icons.developer_board_rounded,
-                        title: 'Fertigation Controller',
-                        subtitle: 'Place nutriflow_controller.png in assets/images/',
-                      ),
+                            icon: Icons.developer_board_rounded,
+                            title: 'Fertigation Controller',
+                            subtitle: 'Place nutriflow_controller.png in assets/images/',
+                          ),
                     ),
                   ),
                 ),
@@ -1240,8 +1197,8 @@ class _FertigationShowcaseSectionState
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: const Color(0xFF00ADFF).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
+              color: const Color(0xFF00ADFF).withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Icon(feat.icon, color: const Color(0xFF00ADFF), size: 20),
           ),
@@ -1292,15 +1249,9 @@ class _FertigationShowcaseSectionState
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1314,8 +1265,8 @@ class _FertigationShowcaseSectionState
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: AppColors.primaryTeal.withOpacity(0.12),
-                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.primaryTeal.withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(AppRadius.md),
                       ),
                       child: const Icon(Icons.receipt_long_rounded, color: AppColors.primaryTeal, size: 24),
                     ),
@@ -1325,7 +1276,7 @@ class _FertigationShowcaseSectionState
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'SPECIFICATION & CATALOGUE',
+                            'Specification & catalogue',
                             style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
                           ),
                           const SizedBox(height: 2),
@@ -1347,7 +1298,7 @@ class _FertigationShowcaseSectionState
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.primaryTeal,
                   side: const BorderSide(color: AppColors.primaryTeal, width: 1.5),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.lg)),
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
                 icon: Icon(
@@ -1384,7 +1335,7 @@ class _FertigationShowcaseSectionState
                     },
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
                       side: BorderSide(
                         color: isSelected ? const Color(0xFF00ADFF) : AppColors.borderLight,
                       ),
@@ -1399,175 +1350,175 @@ class _FertigationShowcaseSectionState
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(AppRadius.lg),
                 border: Border.all(color: AppColors.borderLight),
               ),
               clipBehavior: Clip.antiAlias,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: DataTable(
-              headingRowColor: WidgetStateProperty.all(const Color(0xFFF8FAFC)),
-              dataRowMinHeight: 56,
-              dataRowMaxHeight: 64,
-              columnSpacing: isDesktop ? 40 : 20,
-              columns: const [
-                DataColumn(
-                  label: Text(
-                    'ITEM CODE',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'DESCRIPTION',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'CHANNELS',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'DOSING',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'PRESSURE RATING',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'ACTION',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-              ],
-              rows: filteredOrders.map((item) {
-                return DataRow(
-                  cells: [
-                    DataCell(
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF00ADFF).withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          item.code,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF00ADFF),
-                            fontSize: 13,
-                            fontFamily: 'monospace',
-                          ),
-                        ),
-                      ),
-                    ),
-                    DataCell(
-                      Text(
-                        item.description,
-                        style: const TextStyle(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                  headingRowColor: WidgetStateProperty.all(const Color(0xFFF8FAFC)),
+                  dataRowMinHeight: 56,
+                  dataRowMaxHeight: 64,
+                  columnSpacing: isDesktop ? 40 : 20,
+                  columns: const [
+                    DataColumn(
+                      label: Text(
+                        'ITEM CODE',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
                           color: AppColors.textDark,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    DataCell(
-                      Text(
-                        item.channels,
-                        style: const TextStyle(
-                          color: AppColors.textMedium,
                           fontSize: 13,
                         ),
                       ),
                     ),
-                    DataCell(
-                      Text(
-                        item.dosing,
-                        style: const TextStyle(
-                          color: AppColors.textMedium,
+                    DataColumn(
+                      label: Text(
+                        'DESCRIPTION',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textDark,
                           fontSize: 13,
                         ),
                       ),
                     ),
-                    DataCell(
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                        decoration: BoxDecoration(
-                          color: item.pressure == '4 bar'
-                              ? const Color(0xFF10B981).withOpacity(0.12)
-                              : const Color(0xFFF59E0B).withOpacity(0.12),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Text(
-                          item.pressure,
-                          style: TextStyle(
-                            color: item.pressure == '4 bar'
-                                ? const Color(0xFF10B981)
-                                : const Color(0xFFD97706),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                          ),
+                    DataColumn(
+                      label: Text(
+                        'CHANNELS',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textDark,
+                          fontSize: 13,
                         ),
                       ),
                     ),
-                    DataCell(
-                      IconButton(
-                        icon: const Icon(Icons.copy_rounded, size: 18, color: AppColors.primaryTeal),
-                        tooltip: 'Copy Item Code',
-                        onPressed: () {
-                          Clipboard.setData(ClipboardData(text: item.code));
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Item Code ${item.code} copied to clipboard!'),
-                              duration: const Duration(seconds: 2),
-                              behavior: SnackBarBehavior.floating,
-                            ),
-                          );
-                        },
+                    DataColumn(
+                      label: Text(
+                        'DOSING',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textDark,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        'PRESSURE RATING',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textDark,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        'ACTION',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textDark,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ],
-                );
-              }).toList(),
+                  rows: filteredOrders.map((item) {
+                    return DataRow(
+                      cells: [
+                        DataCell(
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF00ADFF).withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              item.code,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF00ADFF),
+                                fontSize: 13,
+                                fontFamily: 'monospace',
+                              ),
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            item.description,
+                            style: const TextStyle(
+                              color: AppColors.textDark,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            item.channels,
+                            style: const TextStyle(
+                              color: AppColors.textMedium,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            item.dosing,
+                            style: const TextStyle(
+                              color: AppColors.textMedium,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: item.pressure == '4 bar'
+                                  ? const Color(0xFF10B981).withValues(alpha: 0.12)
+                                  : const Color(0xFFF59E0B).withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              item.pressure,
+                              style: TextStyle(
+                                color: item.pressure == '4 bar'
+                                    ? const Color(0xFF10B981)
+                                    : const Color(0xFFD97706),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          IconButton(
+                            icon: const Icon(Icons.copy_rounded, size: 18, color: AppColors.primaryTeal),
+                            tooltip: 'Copy Item Code',
+                            onPressed: () {
+                              Clipboard.setData(ClipboardData(text: item.code));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Item Code ${item.code} copied to clipboard!'),
+                                  duration: const Duration(seconds: 2),
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
-    ],
-  ),
-);
+          ],
+        ],
+      ),
+    );
   }
 
   // ─────────────────────────────────────────────────────────────
@@ -1624,9 +1575,9 @@ class _HeroPill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withOpacity(0.12)),
+        color: Colors.white.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(AppRadius.md),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

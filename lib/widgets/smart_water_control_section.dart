@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/app_design.dart';
 
 // ─────────────────────────────────────────────────────────────
 //  ASSETS (add these to assets/images/ – see pubspec note)
@@ -291,15 +292,9 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.primaryTeal.withOpacity(0.3)),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryTeal.withOpacity(0.15),
-            blurRadius: 18,
-            offset: const Offset(0, 6),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -308,11 +303,10 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           const SizedBox(width: 8),
           Flexible(
             child: Text(
-              'AUTOMATIC PUMP & WATER LEVEL MANAGEMENT',
+              'Automatic pump & water level management',
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.badgeText(color: AppColors.primaryTeal).copyWith(
                 fontWeight: FontWeight.w700,
-                letterSpacing: 1.1,
                 fontSize: 12,
               ),
             ),
@@ -332,13 +326,13 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
             color: AppColors.primaryTeal.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             border: Border.all(color: AppColors.primaryTeal.withOpacity(0.4)),
           ),
           child: Text(
-            'SMART RESOURCE UTILIZATION',
+            'Smart resource utilization',
             style: AppTextStyles.badgeText(color: AppColors.primaryTeal)
-                .copyWith(fontSize: 12, letterSpacing: 1.0, fontWeight: FontWeight.w700),
+                .copyWith(fontSize: 12, fontWeight: FontWeight.w700),
           ),
         ),
         const SizedBox(height: 18),
@@ -386,14 +380,8 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryTeal.withOpacity(0.25),
-            blurRadius: 40,
-            offset: const Offset(0, 18),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        boxShadow: AppShadows.lg,
       ),
       child: Stack(
         children: [
@@ -493,7 +481,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
                               ? LinearGradient(colors: [color, color.withOpacity(0.7)])
                               : null,
                           color: hover ? null : color.withOpacity(0.12),
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(AppRadius.lg),
                         ),
                         child: Icon(b['icon'] as IconData,
                             color: hover ? Colors.white : color, size: 28),
@@ -541,13 +529,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
                     end: Alignment.bottomRight,
                   ),
                   shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primaryTeal.withOpacity(0.35),
-                      blurRadius: 18,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
+                  boxShadow: AppShadows.md,
                 ),
                 child: Icon(s['icon'] as IconData, color: Colors.white, size: 32),
               ),
@@ -589,11 +571,9 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
       padding: EdgeInsets.symmetric(horizontal: isDesktop ? 32 : 20, vertical: 40),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 24, offset: const Offset(0, 10)),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         children: [
@@ -657,9 +637,9 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
                 decoration: BoxDecoration(
                   color: isSelected ? model.color : AppColors.bgLightGrey,
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(AppRadius.xl),
                   boxShadow: isSelected
-                      ? [BoxShadow(color: model.color.withOpacity(0.4), blurRadius: 14, offset: const Offset(0, 6))]
+                      ? AppShadows.sm
                       : [],
                 ),
                 child: Row(
@@ -694,7 +674,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
       height: 340,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         gradient: RadialGradient(
           radius: 0.95,
           colors: [Colors.white, m.color.withOpacity(0.14)],
@@ -737,8 +717,8 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(color: m.color.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 3))],
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                boxShadow: AppShadows.sm,
               ),
               child: Text(m.display,
                   style: AppTextStyles.badgeText(color: m.color).copyWith(fontSize: 12)),
@@ -750,7 +730,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
 
     Widget chip(String text, Color c) => Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(color: c.withOpacity(0.12), borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(color: c.withOpacity(0.12), borderRadius: BorderRadius.circular(AppRadius.lg)),
       child: Text(text, style: AppTextStyles.badgeText(color: c).copyWith(fontSize: 12.5)),
     );
 
@@ -815,9 +795,9 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 28, offset: const Offset(0, 10))],
+        boxShadow: AppShadows.md,
       ),
       padding: EdgeInsets.all(isDesktop ? 32 : 18),
       child: Column(
@@ -857,15 +837,15 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: AppColors.primaryTeal.withOpacity(0.12),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(Icons.wifi_rounded, size: 15, color: AppColors.primaryTeal),
               const SizedBox(width: 6),
-              Text('MOBILE APP CONTROL',
-                  style: AppTextStyles.badgeText().copyWith(fontSize: 11.5, letterSpacing: 1)),
+              Text('Mobile app control',
+                  style: AppTextStyles.badgeText().copyWith(fontSize: 11.5, )),
             ],
           ),
         ),
@@ -892,7 +872,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
                     gradient: const LinearGradient(
                       colors: [AppColors.primaryTeal, AppColors.accentCyan],
                     ),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(AppRadius.md),
                   ),
                   child: Icon(p['icon'] as IconData, color: Colors.white, size: 20),
                 ),
@@ -940,9 +920,9 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.primaryTeal.withOpacity(0.2)),
-        boxShadow: [BoxShadow(color: AppColors.primaryTeal.withOpacity(0.12), blurRadius: 36, offset: const Offset(0, 16))],
+        boxShadow: AppShadows.lg,
       ),
       child: isDesktop
           ? Row(
@@ -983,9 +963,9 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.06)),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.18), blurRadius: 28, offset: const Offset(0, 12))],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -997,7 +977,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
                 height: 50,
                 decoration: BoxDecoration(
                   color: AppColors.primaryTeal.withOpacity(0.18),
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: const Icon(Icons.settings_suggest_rounded, color: AppColors.primaryTeal, size: 26),
               ),
@@ -1019,7 +999,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           ),
           const SizedBox(height: 26),
           ClipRRect(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             child: Container(
               color: Colors.white.withOpacity(0.03),
               child: SingleChildScrollView(
@@ -1119,7 +1099,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(AppRadius.lg),
                             ),
                             child: Icon(a['icon'] as IconData, color: Colors.white, size: 26),
                           ),
@@ -1196,13 +1176,7 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
                             )
                                 : null,
                             border: Border.all(color: AppColors.primaryTeal.withOpacity(0.35), width: 2),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.primaryTeal.withOpacity(hover ? 0.4 : 0.12),
-                                blurRadius: hover ? 24 : 14,
-                                offset: const Offset(0, 8),
-                              ),
-                            ],
+                            boxShadow: AppShadows.sm,
                           ),
                           child: Icon(it['icon'] as IconData,
                               size: 38, color: hover ? Colors.white : AppColors.primaryTeal),
@@ -1243,10 +1217,10 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.18),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           child: Text("LET'S GROW TOGETHER!",
-              style: AppTextStyles.badgeText(color: Colors.white).copyWith(letterSpacing: 1.5, fontWeight: FontWeight.w800)),
+              style: AppTextStyles.badgeText(color: Colors.white).copyWith(fontWeight: FontWeight.w800)),
         ),
         const SizedBox(height: 16),
         Text(
@@ -1313,8 +1287,8 @@ class _SmartWaterControlSectionState extends State<SmartWaterControlSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [BoxShadow(color: AppColors.primaryTeal.withOpacity(0.35), blurRadius: 36, offset: const Offset(0, 14))],
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        boxShadow: AppShadows.lg,
       ),
       child: Stack(
         children: [
@@ -1368,13 +1342,7 @@ BoxDecoration _cardDecoration(bool hover, Color color, {double radius = 22}) {
       color: hover ? color.withOpacity(0.55) : AppColors.borderLight,
       width: hover ? 1.5 : 1,
     ),
-    boxShadow: [
-      BoxShadow(
-        color: (hover ? color : Colors.black).withOpacity(hover ? 0.2 : 0.04),
-        blurRadius: hover ? 30 : 16,
-        offset: Offset(0, hover ? 14 : 6),
-      ),
-    ],
+    boxShadow: AppShadows.sm,
   );
 }
 
@@ -1463,7 +1431,7 @@ class _FeaturePill extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.07),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.12)),
       ),
       child: Row(
@@ -1525,7 +1493,7 @@ class _InfoTile extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: AppColors.bgOffWhite,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.borderLight),
       ),
       child: Row(
@@ -1533,7 +1501,7 @@ class _InfoTile extends StatelessWidget {
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(AppRadius.md)),
             child: Icon(icon, color: color, size: 22),
           ),
           const SizedBox(width: 12),
@@ -1543,7 +1511,7 @@ class _InfoTile extends StatelessWidget {
               children: [
                 Text(label,
                     style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                        .copyWith(fontSize: 10.5, letterSpacing: 0.8)),
+                        .copyWith(fontSize: 10.5, )),
                 const SizedBox(height: 2),
                 Text(value,
                     maxLines: 2,
@@ -1570,7 +1538,7 @@ class _ContactChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.3)),
       ),
       child: Row(
@@ -1617,7 +1585,7 @@ class _ZoomableImageState extends State<_ZoomableImage> {
               minScale: 1,
               maxScale: 4,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(AppRadius.lg),
                 child: Image.asset(widget.path, fit: BoxFit.contain),
               ),
             ),
@@ -1651,13 +1619,7 @@ class _ZoomableImageState extends State<_ZoomableImage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
               border: Border.all(color: Colors.white.withOpacity(0.15)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.35),
-                  blurRadius: 30,
-                  offset: const Offset(0, 14),
-                ),
-              ],
+              boxShadow: AppShadows.md,
             ),
             child: Stack(
               fit: StackFit.expand,
@@ -1687,7 +1649,7 @@ class _ZoomableImageState extends State<_ZoomableImage> {
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
                         color: AppColors.bgDarkSlate.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(AppRadius.lg),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -1724,16 +1686,10 @@ class _PhoneFrame extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF0F172A),
         borderRadius: BorderRadius.circular(34),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.28),
-            blurRadius: 32,
-            offset: const Offset(0, 18),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         child: AspectRatio(
           aspectRatio: 716 / 1600,
           child: Stack(
@@ -1755,7 +1711,7 @@ class _PhoneFrame extends StatelessWidget {
                   height: 12,
                   decoration: BoxDecoration(
                     color: const Color(0xFF0F172A),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(AppRadius.md),
                   ),
                 ),
               ),
@@ -1801,9 +1757,9 @@ class _ModelsMatrix extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 24, offset: const Offset(0, 10))],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1815,7 +1771,7 @@ class _ModelsMatrix extends StatelessWidget {
                 height: 44,
                 decoration: BoxDecoration(
                   color: AppColors.primaryTeal.withOpacity(0.12),
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
                 child: const Icon(Icons.compare_arrows_rounded, color: AppColors.primaryTeal),
               ),
@@ -1952,7 +1908,7 @@ class _ModelsMatrix extends StatelessWidget {
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
               color: const Color(0xFFF0FAF3),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
               border: Border.all(color: const Color(0xFF22A745).withOpacity(0.3)),
             ),
             child: Column(
@@ -1970,7 +1926,7 @@ class _ModelsMatrix extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                         decoration: BoxDecoration(
                           color: const Color(0xFF168A34),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(AppRadius.lg),
                         ),
                         child: Text(n, style: AppTextStyles.badgeText(color: Colors.white).copyWith(fontSize: 12)),
                       ),
@@ -1998,7 +1954,7 @@ class _ModelsMatrix extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(AppRadius.lg),
                           border: Border.all(color: AppColors.borderLight),
                         ),
                         child: Row(

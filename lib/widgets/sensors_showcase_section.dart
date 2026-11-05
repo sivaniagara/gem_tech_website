@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/app_design.dart';
 
 // ─────────────────────────────────────────────────────────────
 //  ASSETS  (copy to assets/images/)
@@ -366,11 +367,9 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.primaryTeal.withOpacity(0.3)),
-        boxShadow: [
-          BoxShadow(color: AppColors.primaryTeal.withOpacity(0.15), blurRadius: 18, offset: const Offset(0, 6)),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -382,7 +381,7 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
               'ORO SENSORS  •  MADE FOR SMART AGRICULTURE',
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.badgeText(color: AppColors.primaryTeal)
-                  .copyWith(fontWeight: FontWeight.w700, letterSpacing: 1.1, fontSize: 12),
+                  .copyWith(fontWeight: FontWeight.w700, fontSize: 12),
             ),
           ),
         ],
@@ -400,12 +399,12 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
             color: AppColors.primaryTeal.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             border: Border.all(color: AppColors.primaryTeal.withOpacity(0.4)),
           ),
           child: Text('ACCURATE • RELIABLE • READY TO CONNECT',
               style: AppTextStyles.badgeText(color: AppColors.primaryTeal)
-                  .copyWith(fontSize: 11.5, letterSpacing: 1, fontWeight: FontWeight.w700)),
+                  .copyWith(fontSize: 11.5, fontWeight: FontWeight.w700)),
         ),
         const SizedBox(height: 18),
         Text(
@@ -439,7 +438,7 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(22),
           border: Border.all(color: Colors.white.withOpacity(0.15)),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.35), blurRadius: 30, offset: const Offset(0, 14))],
+          boxShadow: AppShadows.md,
         ),
         child: Stack(
           fit: StackFit.expand,
@@ -486,8 +485,8 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [BoxShadow(color: AppColors.primaryTeal.withOpacity(0.25), blurRadius: 40, offset: const Offset(0, 18))],
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        boxShadow: AppShadows.lg,
       ),
       child: Stack(
         children: [
@@ -531,9 +530,9 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(40),
+                  borderRadius: BorderRadius.circular(AppRadius.xl),
                   border: Border.all(color: AppColors.borderLight),
-                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20, offset: const Offset(0, 8))],
+                  boxShadow: AppShadows.md,
                 ),
                 child: Row(mainAxisSize: MainAxisSize.min, children: _categories.map(_buildPill).toList()),
               ),
@@ -561,9 +560,9 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
             gradient: isSelected
                 ? const LinearGradient(colors: [AppColors.primaryTeal, AppColors.accentCyan])
                 : null,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(AppRadius.xl),
             boxShadow: isSelected
-                ? [BoxShadow(color: AppColors.primaryTeal.withOpacity(0.4), blurRadius: 16, offset: const Offset(0, 6))]
+                ? AppShadows.md
                 : [],
           ),
           child: Row(
@@ -583,7 +582,7 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                 decoration: BoxDecoration(
                   color: isSelected ? Colors.white.withOpacity(0.25) : AppColors.bgLightGrey,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
                 child: Text('$count',
                     style: AppTextStyles.badgeText(color: isSelected ? Colors.white : AppColors.textMuted)
@@ -640,7 +639,7 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
                             decoration: BoxDecoration(
                               gradient: hover ? LinearGradient(colors: [color, color.withOpacity(0.7)]) : null,
                               color: hover ? null : color.withOpacity(0.12),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(AppRadius.lg),
                             ),
                             child: Icon(it['icon'] as IconData, color: hover ? Colors.white : color, size: 28),
                           ),
@@ -680,9 +679,9 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.08)),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.18), blurRadius: 28, offset: const Offset(0, 12))],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -694,7 +693,7 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
                 height: 48,
                 decoration: BoxDecoration(
                   color: AppColors.primaryTeal.withOpacity(0.18),
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: const Icon(Icons.receipt_long_rounded, color: AppColors.primaryTeal, size: 24),
               ),
@@ -720,7 +719,7 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,
                   side: BorderSide(color: Colors.white.withOpacity(0.3), width: 1.5),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.lg)),
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
                 icon: Icon(
@@ -739,7 +738,7 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
           if (isOrderingGuideExpanded) ...[
             const SizedBox(height: 24),
             ClipRRect(
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
               child: Container(
                 color: Colors.white.withOpacity(0.03),
                 child: SingleChildScrollView(
@@ -815,8 +814,8 @@ class _SensorsShowcaseSectionState extends State<SensorsShowcaseSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [BoxShadow(color: AppColors.primaryTeal.withOpacity(0.35), blurRadius: 36, offset: const Offset(0, 14))],
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        boxShadow: AppShadows.lg,
       ),
       child: Stack(
         children: [
@@ -907,18 +906,12 @@ class _SensorCardState extends State<_SensorCard> {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(28),
+            borderRadius: BorderRadius.circular(AppRadius.xl),
             border: Border.all(
               color: _hover ? s.color.withOpacity(0.55) : AppColors.borderLight,
               width: _hover ? 1.5 : 1,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: (_hover ? s.color : Colors.black).withOpacity(_hover ? 0.22 : 0.05),
-                blurRadius: _hover ? 36 : 18,
-                offset: Offset(0, _hover ? 18 : 8),
-              ),
-            ],
+            boxShadow: AppShadows.sm,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1009,8 +1002,8 @@ class _SensorCardState extends State<_SensorCard> {
               padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(color: s.color.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 3))],
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                boxShadow: AppShadows.sm,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -1040,7 +1033,7 @@ class _SensorCardState extends State<_SensorCard> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
         color: AppColors.bgOffWhite,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: AppColors.borderLight),
       ),
       child: Row(
@@ -1053,7 +1046,7 @@ class _SensorCardState extends State<_SensorCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(label,
-                    style: AppTextStyles.badgeText(color: AppColors.textMuted).copyWith(fontSize: 10, letterSpacing: 0.8)),
+                    style: AppTextStyles.badgeText(color: AppColors.textMuted).copyWith(fontSize: 10, )),
                 const SizedBox(height: 2),
                 Text(value,
                     maxLines: 2,
@@ -1077,9 +1070,9 @@ class _SensorCardState extends State<_SensorCard> {
       decoration: BoxDecoration(
         gradient: _hover ? LinearGradient(colors: [s.color, Color.lerp(s.color, AppColors.accentCyan, 0.5)!]) : null,
         color: _hover ? null : s.color.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         boxShadow: _hover
-            ? [BoxShadow(color: s.color.withOpacity(0.4), blurRadius: 16, offset: const Offset(0, 6))]
+            ? AppShadows.md
             : [],
       ),
       child: Row(
@@ -1117,7 +1110,7 @@ class _SensorDetailsDialog extends StatelessWidget {
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.transparent,
       clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.xl)),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 880),
         child: Stack(
@@ -1202,14 +1195,14 @@ class _SensorDetailsDialog extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(color: s.color.withOpacity(0.12), borderRadius: BorderRadius.circular(20)),
+            decoration: BoxDecoration(color: s.color.withOpacity(0.12), borderRadius: BorderRadius.circular(AppRadius.lg)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(s.icon, size: 14, color: s.color),
                 const SizedBox(width: 6),
-                Text(s.category.toUpperCase(),
-                    style: AppTextStyles.badgeText(color: s.color).copyWith(fontSize: 11, letterSpacing: 1)),
+                Text(s.category,
+                    style: AppTextStyles.badgeText(color: s.color).copyWith(fontSize: 11, )),
               ],
             ),
           ),
@@ -1262,7 +1255,7 @@ class _SensorDetailsDialog extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
               decoration: BoxDecoration(
                 color: AppColors.bgOffWhite,
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(AppRadius.md),
                 border: Border.all(color: AppColors.borderLight),
               ),
               child: Row(
@@ -1271,7 +1264,7 @@ class _SensorDetailsDialog extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(color: s.color, borderRadius: BorderRadius.circular(8)),
                     child: Text(o.code,
-                        style: AppTextStyles.badgeText(color: Colors.white).copyWith(fontSize: 12, letterSpacing: 0.4)),
+                        style: AppTextStyles.badgeText(color: Colors.white).copyWith(fontSize: 12, )),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -1297,13 +1290,13 @@ class _SensorDetailsDialog extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: sensor.color.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: sensor.color.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: AppTextStyles.badgeText(color: AppColors.textMuted).copyWith(fontSize: 10.5, letterSpacing: 0.8)),
+          Text(label, style: AppTextStyles.badgeText(color: AppColors.textMuted).copyWith(fontSize: 10.5, )),
           const SizedBox(height: 4),
           Text(value, style: AppTextStyles.cardTitle().copyWith(fontSize: 15)),
         ],
@@ -1320,13 +1313,7 @@ BoxDecoration _cardDecoration(bool hover, Color color, {double radius = 22}) {
     color: Colors.white,
     borderRadius: BorderRadius.circular(radius),
     border: Border.all(color: hover ? color.withOpacity(0.55) : AppColors.borderLight, width: hover ? 1.5 : 1),
-    boxShadow: [
-      BoxShadow(
-        color: (hover ? color : Colors.black).withOpacity(hover ? 0.2 : 0.04),
-        blurRadius: hover ? 30 : 16,
-        offset: Offset(0, hover ? 14 : 6),
-      ),
-    ],
+    boxShadow: AppShadows.sm,
   );
 }
 
@@ -1422,7 +1409,7 @@ class _GlassChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.bgDarkSlate.withOpacity(0.65),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.2)),
       ),
       child: Row(
@@ -1449,7 +1436,7 @@ class _ContactChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.3)),
       ),
       child: Row(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/app_design.dart';
 
 class FooterSection extends StatelessWidget {
   final Function(String)? onNavSelected;
@@ -22,7 +23,7 @@ class FooterSection extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.xl)),
         title: const Row(
           children: [
             Icon(Icons.handshake_rounded, color: AppColors.primaryTeal, size: 28),
@@ -49,7 +50,7 @@ class FooterSection extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Full Name / Contact Person',
                       prefixIcon: const Icon(Icons.person_rounded),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
                     ),
                     validator: (v) => (v == null || v.isEmpty) ? 'Please enter your name' : null,
                   ),
@@ -60,7 +61,7 @@ class FooterSection extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Phone / WhatsApp Number',
                       prefixIcon: const Icon(Icons.phone_rounded),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
                     ),
                     validator: (v) => (v == null || v.isEmpty) ? 'Please enter your phone number' : null,
                   ),
@@ -70,7 +71,7 @@ class FooterSection extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Company / Business Name',
                       prefixIcon: const Icon(Icons.business_rounded),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
                     ),
                   ),
                   const SizedBox(height: 14),
@@ -79,7 +80,7 @@ class FooterSection extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'City / Region of Operation',
                       prefixIcon: const Icon(Icons.location_city_rounded),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
                     ),
                   ),
                 ],
@@ -109,7 +110,7 @@ class FooterSection extends StatelessWidget {
               backgroundColor: AppColors.primaryTeal,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.lg)),
             ),
             child: const Text('Submit Inquiry'),
           ),
@@ -138,55 +139,55 @@ class FooterSection extends StatelessWidget {
               // Top Grid
               isDesktop
                   ? Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(flex: 4, child: _buildBrandCol(context)),
-                        const SizedBox(width: 40),
-                        Expanded(flex: 2, child: _buildQuickNavCol()),
-                        const SizedBox(width: 30),
-                        Expanded(flex: 3, child: _buildProductsCol()),
-                        const SizedBox(width: 30),
-                        Expanded(flex: 3, child: _buildContactCol(context)),
-                      ],
-                    )
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(flex: 4, child: _buildBrandCol(context)),
+                  const SizedBox(width: 40),
+                  Expanded(flex: 2, child: _buildQuickNavCol()),
+                  const SizedBox(width: 30),
+                  Expanded(flex: 3, child: _buildProductsCol()),
+                  const SizedBox(width: 30),
+                  Expanded(flex: 3, child: _buildContactCol(context)),
+                ],
+              )
                   : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildBrandCol(context),
-                        const SizedBox(height: 32),
-                        Wrap(
-                          spacing: 40,
-                          runSpacing: 28,
-                          children: [
-                            _buildQuickNavCol(),
-                            _buildProductsCol(),
-                          ],
-                        ),
-                        const SizedBox(height: 32),
-                        _buildContactCol(context),
-                      ],
-                    ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildBrandCol(context),
+                  const SizedBox(height: 32),
+                  Wrap(
+                    spacing: 40,
+                    runSpacing: 28,
+                    children: [
+                      _buildQuickNavCol(),
+                      _buildProductsCol(),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  _buildContactCol(context),
+                ],
+              ),
 
               const SizedBox(height: 50),
-              Container(height: 1, color: Colors.white.withOpacity(0.1)),
+              Container(height: 1, color: Colors.white.withValues(alpha: 0.1)),
               const SizedBox(height: 30),
 
               // Bottom Bar: Certifications & Copyright
               isDesktop
                   ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _buildCertificationsRow(),
-                        _buildCopyrightText(),
-                      ],
-                    )
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildCertificationsRow(),
+                  _buildCopyrightText(),
+                ],
+              )
                   : Column(
-                      children: [
-                        _buildCertificationsRow(),
-                        const SizedBox(height: 20),
-                        _buildCopyrightText(),
-                      ],
-                    ),
+                children: [
+                  _buildCertificationsRow(),
+                  const SizedBox(height: 20),
+                  _buildCopyrightText(),
+                ],
+              ),
             ],
           ),
         ),
@@ -207,7 +208,7 @@ class FooterSection extends StatelessWidget {
                 gradient: const LinearGradient(
                   colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
                 ),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
               child: const Icon(Icons.eco_rounded, color: Colors.white, size: 22),
             ),
@@ -218,14 +219,13 @@ class FooterSection extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
                 color: Colors.white,
-                letterSpacing: 0.8,
               ),
             ),
           ],
         ),
         const SizedBox(height: 14),
         const Text(
-          'Pioneering next-generation smart farm controllers, fertigation systems, hydraulic control valves, and IoT precision sensors for global agricultural sustainability.',
+          'Smart farm controllers, fertigation systems, hydraulic control valves and precision sensors, engineered in Coimbatore with over 10 years of field experience.',
           style: TextStyle(
             fontSize: 13.5,
             color: Colors.white70,
@@ -233,36 +233,26 @@ class FooterSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        ElevatedButton.icon(
+        AppButton(
+          'Become a dealer / partner',
+          trailingIcon: Icons.handshake_rounded,
           onPressed: () => _showDealerInquiryDialog(context),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primaryTeal,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          ),
-          icon: const Icon(Icons.handshake_rounded, size: 18),
-          label: const Text('Become a Dealer / Partner'),
         ),
       ],
     );
   }
 
+  TextStyle get _headingStyle =>
+      AppTextStyles.cardTitle(color: Colors.white).copyWith(fontSize: 15);
+
   Widget _buildQuickNavCol() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'QUICK LINKS',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            color: AppColors.primaryTeal,
-            letterSpacing: 1.1,
-          ),
-        ),
+        Text('Quick links', style: _headingStyle),
         const SizedBox(height: 14),
         _footerLink('Home', () => onNavSelected?.call('Home')),
+        _footerLink('About us', () => onNavSelected?.call('About')),
         _footerLink('ORO GEM OS', () => onNavSelected?.call('ORO GEM OS')),
         _footerLink('Smart Water', () => onNavSelected?.call('Smart Water')),
         _footerLink('Fertigation', () => onNavSelected?.call('Fertigation')),
@@ -277,15 +267,7 @@ class FooterSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'SOLUTIONS',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            color: AppColors.primaryTeal,
-            letterSpacing: 1.1,
-          ),
-        ),
+        Text('Solutions', style: _headingStyle),
         const SizedBox(height: 14),
         _footerText('ORO SHINE / ELITE / NOVA'),
         _footerText('NutriFlow™ 400 Fertigation'),
@@ -301,15 +283,7 @@ class FooterSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'CONTACT & SUPPORT',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            color: AppColors.primaryTeal,
-            letterSpacing: 1.1,
-          ),
-        ),
+        Text('Contact and support', style: _headingStyle),
         const SizedBox(height: 14),
         _iconDetail(Icons.phone_rounded, '+91 73737 05677'),
         _iconDetail(Icons.email_rounded, 'info@niagaraautomation.com'),
@@ -321,8 +295,8 @@ class FooterSection extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.08),
-              borderRadius: BorderRadius.circular(12),
+              color: Colors.white.withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(AppRadius.md),
               border: Border.all(color: Colors.white12),
             ),
             child: const Row(
@@ -343,16 +317,7 @@ class FooterSection extends StatelessWidget {
   }
 
   Widget _footerLink(String label, VoidCallback onTap) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: InkWell(
-        onTap: onTap,
-        child: Text(
-          label,
-          style: const TextStyle(fontSize: 13.5, color: Colors.white70),
-        ),
-      ),
-    );
+    return _FooterLink(label: label, onTap: onTap);
   }
 
   Widget _footerText(String label) {
@@ -415,8 +380,8 @@ class _CertBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.06),
-        borderRadius: BorderRadius.circular(8),
+        color: Colors.white.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(AppRadius.sm),
         border: Border.all(color: Colors.white12),
       ),
       child: Row(
@@ -429,6 +394,40 @@ class _CertBadge extends StatelessWidget {
             style: const TextStyle(color: Colors.white70, fontSize: 11.5, fontWeight: FontWeight.w500),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _FooterLink extends StatefulWidget {
+  final String label;
+  final VoidCallback onTap;
+  const _FooterLink({required this.label, required this.onTap});
+
+  @override
+  State<_FooterLink> createState() => _FooterLinkState();
+}
+
+class _FooterLinkState extends State<_FooterLink> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: InkWell(
+        onTap: widget.onTap,
+        onHover: (v) => setState(() => _hover = v),
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 150),
+          style: TextStyle(
+            fontSize: 13.5,
+            color: _hover ? Colors.white : Colors.white70,
+            decoration: _hover ? TextDecoration.underline : TextDecoration.none,
+            decorationColor: AppColors.primaryTeal,
+          ),
+          child: Text(widget.label),
+        ),
       ),
     );
   }

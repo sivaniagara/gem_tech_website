@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/app_design.dart';
 
 // ─────────────────────────────────────────────────────────────
 //  ORO GEM OS & ECOSYSTEM - REQUIRED ASSETS
@@ -679,7 +680,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
             decoration: BoxDecoration(
               color: _kMint.withValues(alpha: 0.16),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(AppRadius.xl),
               border: Border.all(color: _kMint.withValues(alpha: 0.5)),
             ),
             child: const Row(
@@ -688,12 +689,11 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                 Icon(Icons.hub_rounded, size: 16, color: _kMint),
                 SizedBox(width: 8),
                 Text(
-                  'NIAGARA OROGEM ECOSYSTEM',
+                  'Niagara OROGEM ecosystem',
                   style: TextStyle(
                     color: _kMint,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                    letterSpacing: 1.3,
                   ),
                 ),
               ],
@@ -758,7 +758,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                       textStyle: const TextStyle(
                           fontWeight: FontWeight.w800, fontSize: 14),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                          borderRadius: BorderRadius.circular(AppRadius.md)),
                     ),
                   ),
                 if (widget.onViewCatalog != null)
@@ -775,7 +775,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                       textStyle: const TextStyle(
                           fontWeight: FontWeight.w700, fontSize: 14),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)),
+                          borderRadius: BorderRadius.circular(AppRadius.md)),
                     ),
                   ),
               ],
@@ -867,14 +867,8 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: _kTeal.withValues(alpha: 0.35),
-                    blurRadius: 14,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                boxShadow: AppShadows.sm,
               ),
               child: const Icon(Icons.dvr_rounded, color: Colors.white, size: 26),
             ),
@@ -884,12 +878,11 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'OROGEM OPERATING SYSTEM',
+                    'OROGEM operating system',
                     style: TextStyle(
                       color: _kTeal,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      letterSpacing: 1.3,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -935,15 +928,9 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [
-          BoxShadow(
-            color: _kTeal.withValues(alpha: 0.06),
-            blurRadius: 32,
-            offset: const Offset(0, 12),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       padding: EdgeInsets.all(isDesktop ? 40 : 22),
       child: isDesktop
@@ -1013,7 +1000,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                   const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                   decoration: BoxDecoration(
                     color: _kDeepTeal.withValues(alpha: 0.88),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
                   ),
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
@@ -1046,7 +1033,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
       builder: (ctx) => Dialog(
         backgroundColor: Colors.white,
         insetPadding: const EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.xl)),
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
@@ -1093,7 +1080,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         color: const Color(0xFFF3F8F8),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.borderLight),
       ),
       child: Column(
@@ -1158,7 +1145,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _SectionHeader(
-          eyebrow: 'INTELLIGENT SUBSYSTEMS',
+          eyebrow: 'Intelligent subsystems',
           title: 'Fertigation, Backflush & Alarm Control',
           subtitle:
           'Built-in intelligence that protects your system and your crop.',
@@ -1202,7 +1189,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
         padding: const EdgeInsets.all(26),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(AppRadius.xl),
           border: Border.all(color: AppColors.borderLight),
         ),
         child: Column(
@@ -1219,13 +1206,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                       end: Alignment.bottomRight,
                     ),
                     borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: color.withValues(alpha: 0.30),
-                        blurRadius: 12,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
+                    boxShadow: AppShadows.sm,
                   ),
                   child: Icon(data.icon, color: Colors.white, size: 24),
                 ),
@@ -1307,15 +1288,9 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(AppRadius.xl),
           border: Border.all(color: AppColors.primaryTeal.withOpacity(0.3)),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primaryTeal.withOpacity(0.15),
-              blurRadius: 18,
-              offset: const Offset(0, 6),
-            ),
-          ],
+          boxShadow: AppShadows.md,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -1324,11 +1299,10 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
             const SizedBox(width: 8),
             Flexible(
               child: Text(
-                'MODULAR & EXPANDABLE AUTOMATION',
+                'Modular & expandable automation',
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.badgeText(color: AppColors.primaryTeal).copyWith(
                   fontWeight: FontWeight.w700,
-                  letterSpacing: 1.1,
                   fontSize: 12,
                 ),
               ),
@@ -1362,7 +1336,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Icon(s['icon'] as IconData, color: Colors.white, size: 24),
           ),
@@ -1402,14 +1376,8 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primaryTeal.withOpacity(0.18),
-              blurRadius: 32,
-              offset: const Offset(0, 14),
-            ),
-          ],
+          borderRadius: BorderRadius.circular(AppRadius.xl),
+          boxShadow: AppShadows.md,
         ),
         child: LayoutBuilder(
           builder: (context, c) {
@@ -1456,15 +1424,9 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(40),
+                  borderRadius: BorderRadius.circular(AppRadius.xl),
                   border: Border.all(color: AppColors.borderLight),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 20,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
+                  boxShadow: AppShadows.md,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -1500,15 +1462,9 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
               colors: [AppColors.primaryTeal, AppColors.accentCyan],
             )
                 : null,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(AppRadius.xl),
             boxShadow: isSelected
-                ? [
-              BoxShadow(
-                color: AppColors.primaryTeal.withOpacity(0.4),
-                blurRadius: 16,
-                offset: const Offset(0, 6),
-              ),
-            ]
+                ? AppShadows.md
                 : [],
           ),
           child: Row(
@@ -1534,7 +1490,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                   color: isSelected
                       ? Colors.white.withOpacity(0.25)
                       : AppColors.bgLightGrey,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
                 child: Text(
                   '$count',
@@ -1583,15 +1539,9 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.06)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.18),
-            blurRadius: 28,
-            offset: const Offset(0, 12),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1603,7 +1553,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
                 height: 50,
                 decoration: BoxDecoration(
                   color: AppColors.primaryTeal.withOpacity(0.18),
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: const Icon(Icons.table_chart_rounded, color: AppColors.primaryTeal, size: 26),
               ),
@@ -1629,7 +1579,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
           ),
           const SizedBox(height: 26),
           ClipRRect(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             child: Container(
               color: Colors.white.withOpacity(0.03),
               child: SingleChildScrollView(
@@ -1747,7 +1697,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
               textStyle:
               const TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14)),
+                  borderRadius: BorderRadius.circular(AppRadius.md)),
             ),
           ),
         if (widget.onViewCatalog != null)
@@ -1763,7 +1713,7 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
               textStyle:
               const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14)),
+                  borderRadius: BorderRadius.circular(AppRadius.md)),
             ),
           ),
       ],
@@ -1773,19 +1723,13 @@ class _OroGemEcosystemSectionState extends State<OroGemEcosystemSection> {
       width: double.infinity,
       padding: EdgeInsets.all(isDesktop ? 44 : 24),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         gradient: const LinearGradient(
           colors: [_kDeepTeal, _kTeal],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: _kTeal.withValues(alpha: 0.30),
-            blurRadius: 30,
-            offset: const Offset(0, 14),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: isDesktop
           ? Row(
@@ -1849,18 +1793,12 @@ class _EcosystemCardState extends State<_EcosystemCard> {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(28),
+            borderRadius: BorderRadius.circular(AppRadius.xl),
             border: Border.all(
               color: _hover ? style.color.withOpacity(0.55) : AppColors.borderLight,
               width: _hover ? 1.5 : 1,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: (_hover ? style.color : Colors.black).withOpacity(_hover ? 0.22 : 0.05),
-                blurRadius: _hover ? 36 : 18,
-                offset: Offset(0, _hover ? 18 : 8),
-              ),
-            ],
+            boxShadow: AppShadows.sm,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1974,14 +1912,8 @@ class _EcosystemCardState extends State<_EcosystemCard> {
               padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: style.color.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                boxShadow: AppShadows.sm,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -2015,7 +1947,7 @@ class _EcosystemCardState extends State<_EcosystemCard> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
         color: AppColors.bgOffWhite,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: AppColors.borderLight),
       ),
       child: Row(
@@ -2030,7 +1962,7 @@ class _EcosystemCardState extends State<_EcosystemCard> {
                 Text(
                   label,
                   style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                      .copyWith(fontSize: 10, letterSpacing: 0.8),
+                      .copyWith(fontSize: 10, ),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -2062,15 +1994,9 @@ class _EcosystemCardState extends State<_EcosystemCard> {
         )
             : null,
         color: _hover ? null : style.color.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         boxShadow: _hover
-            ? [
-          BoxShadow(
-            color: style.color.withOpacity(0.4),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
-          ),
-        ]
+            ? AppShadows.md
             : [],
       ),
       child: Row(
@@ -2109,7 +2035,7 @@ class _EcosystemDetailsDialog extends StatelessWidget {
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.transparent,
       clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.xl)),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 880),
         child: Stack(
@@ -2208,7 +2134,7 @@ class _EcosystemDetailsDialog extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
               color: style.color.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -2216,9 +2142,9 @@ class _EcosystemDetailsDialog extends StatelessWidget {
                 Icon(style.icon, size: 14, color: style.color),
                 const SizedBox(width: 6),
                 Text(
-                  item.category.toUpperCase(),
+                  item.category,
                   style: AppTextStyles.badgeText(color: style.color)
-                      .copyWith(fontSize: 11, letterSpacing: 1),
+                      .copyWith(fontSize: 11, ),
                 ),
               ],
             ),
@@ -2245,7 +2171,7 @@ class _EcosystemDetailsDialog extends StatelessWidget {
               gradient: LinearGradient(
                 colors: [style.color.withOpacity(0.14), style.color.withOpacity(0.04)],
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
               border: Border.all(color: style.color.withOpacity(0.25)),
             ),
             child: Row(
@@ -2259,7 +2185,7 @@ class _EcosystemDetailsDialog extends StatelessWidget {
                       Text(
                         'COMMUNICATION INTERFACE',
                         style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                            .copyWith(fontSize: 10.5, letterSpacing: 0.9),
+                            .copyWith(fontSize: 10.5, ),
                       ),
                       const SizedBox(height: 2),
                       Text(
@@ -2289,7 +2215,7 @@ class _EcosystemDetailsDialog extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: AppColors.bgOffWhite,
-                        borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(AppRadius.md),
                         border: Border.all(color: AppColors.borderLight),
                       ),
                       child: Row(
@@ -2300,7 +2226,7 @@ class _EcosystemDetailsDialog extends StatelessWidget {
                             height: 34,
                             decoration: BoxDecoration(
                               color: style.color.withOpacity(0.12),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(AppRadius.md),
                             ),
                             child: Icon(Icons.tune_rounded, size: 18, color: style.color),
                           ),
@@ -2310,9 +2236,9 @@ class _EcosystemDetailsDialog extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  entry.key.toUpperCase(),
+                                  entry.key,
                                   style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                                      .copyWith(fontSize: 10, letterSpacing: 0.8),
+                                      .copyWith(fontSize: 10, ),
                                 ),
                                 const SizedBox(height: 3),
                                 Text(
@@ -2392,7 +2318,7 @@ class _EcosystemDetailsDialog extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: InkWell(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
               onTap: () => Navigator.pop(context),
               child: Ink(
                 padding: const EdgeInsets.symmetric(vertical: 15),
@@ -2400,14 +2326,8 @@ class _EcosystemDetailsDialog extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [style.color, Color.lerp(style.color, AppColors.accentCyan, 0.5)!],
                   ),
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: style.color.withOpacity(0.35),
-                      blurRadius: 14,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
+                  boxShadow: AppShadows.sm,
                 ),
                 child: Center(
                   child: Text('Close Details', style: AppTextStyles.buttonText()),
@@ -2539,7 +2459,7 @@ class _OsPillarChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
       decoration: BoxDecoration(
         color: pillar.color.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: pillar.color.withValues(alpha: 0.22)),
       ),
       child: Row(
@@ -2590,7 +2510,7 @@ class _ModelChip extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
             decoration: BoxDecoration(
               color: AppColors.bgLightGrey,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppRadius.md),
               border: Border.all(color: AppColors.borderLight),
             ),
             child: Column(
@@ -2648,7 +2568,7 @@ class _HeroPill extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
       ),
       child: Row(
@@ -2685,15 +2605,9 @@ class _HeroFloatingChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
         decoration: BoxDecoration(
           color: _kDeepTeal.withValues(alpha: 0.88),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppRadius.lg),
           border: Border.all(color: Colors.white24),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.25),
-              blurRadius: 18,
-              offset: const Offset(0, 8),
-            ),
-          ],
+          boxShadow: AppShadows.md,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -2775,15 +2689,7 @@ class _HoverLiftState extends State<_HoverLift> {
         transform: Matrix4.translationValues(0, _hover ? -6 : 0, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(widget.radius),
-          boxShadow: [
-            BoxShadow(
-              color: _hover
-                  ? widget.glow.withValues(alpha: 0.20)
-                  : Colors.black.withValues(alpha: 0.04),
-              blurRadius: _hover ? 32 : 16,
-              offset: Offset(0, _hover ? 16 : 6),
-            ),
-          ],
+          boxShadow: AppShadows.sm,
         ),
         child: widget.child,
       ),

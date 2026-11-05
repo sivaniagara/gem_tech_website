@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/app_design.dart';
 
 class ValveModel {
   final String id;
@@ -403,15 +404,9 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.primaryTeal.withOpacity(0.3)),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryTeal.withOpacity(0.15),
-            blurRadius: 18,
-            offset: const Offset(0, 6),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -420,11 +415,10 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
           const SizedBox(width: 8),
           Flexible(
             child: Text(
-              'ISO 9001-2015 CERTIFIED MANUFACTURING',
+              'ISO 9001-2015 certified manufacturing',
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.badgeText(color: AppColors.primaryTeal).copyWith(
                 fontWeight: FontWeight.w700,
-                letterSpacing: 1.1,
                 fontSize: 12,
               ),
             ),
@@ -458,7 +452,7 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Icon(s['icon'] as IconData, color: Colors.white, size: 24),
           ),
@@ -498,14 +492,8 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primaryTeal.withOpacity(0.18),
-              blurRadius: 32,
-              offset: const Offset(0, 14),
-            ),
-          ],
+          borderRadius: BorderRadius.circular(AppRadius.xl),
+          boxShadow: AppShadows.md,
         ),
         child: LayoutBuilder(
           builder: (context, c) {
@@ -554,15 +542,9 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(40),
+                  borderRadius: BorderRadius.circular(AppRadius.xl),
                   border: Border.all(color: AppColors.borderLight),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 20,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
+                  boxShadow: AppShadows.md,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -598,15 +580,9 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
               colors: [AppColors.primaryTeal, AppColors.accentCyan],
             )
                 : null,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(AppRadius.xl),
             boxShadow: isSelected
-                ? [
-              BoxShadow(
-                color: AppColors.primaryTeal.withOpacity(0.4),
-                blurRadius: 16,
-                offset: const Offset(0, 6),
-              ),
-            ]
+                ? AppShadows.md
                 : [],
           ),
           child: Row(
@@ -632,7 +608,7 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
                   color: isSelected
                       ? Colors.white.withOpacity(0.25)
                       : AppColors.bgLightGrey,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
                 child: Text(
                   '$count',
@@ -673,15 +649,9 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: Colors.white.withOpacity(0.06)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.18),
-            blurRadius: 28,
-            offset: const Offset(0, 12),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -693,7 +663,7 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
                 height: 50,
                 decoration: BoxDecoration(
                   color: AppColors.primaryTeal.withOpacity(0.18),
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: const Icon(Icons.table_chart_rounded, color: AppColors.primaryTeal, size: 26),
               ),
@@ -719,7 +689,7 @@ class _ValveShowcaseSectionState extends State<ValveShowcaseSection> {
           ),
           const SizedBox(height: 26),
           ClipRRect(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             child: Container(
               color: Colors.white.withOpacity(0.03),
               child: SingleChildScrollView(
@@ -834,18 +804,12 @@ class _ValveCardState extends State<_ValveCard> {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(28),
+            borderRadius: BorderRadius.circular(AppRadius.xl),
             border: Border.all(
               color: _hover ? style.color.withOpacity(0.55) : AppColors.borderLight,
               width: _hover ? 1.5 : 1,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: (_hover ? style.color : Colors.black).withOpacity(_hover ? 0.22 : 0.05),
-                blurRadius: _hover ? 36 : 18,
-                offset: Offset(0, _hover ? 18 : 8),
-              ),
-            ],
+            boxShadow: AppShadows.sm,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -955,14 +919,8 @@ class _ValveCardState extends State<_ValveCard> {
               padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: style.color.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                boxShadow: AppShadows.sm,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -997,7 +955,7 @@ class _ValveCardState extends State<_ValveCard> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
         color: AppColors.bgOffWhite,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: AppColors.borderLight),
       ),
       child: Row(
@@ -1012,7 +970,7 @@ class _ValveCardState extends State<_ValveCard> {
                 Text(
                   label,
                   style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                      .copyWith(fontSize: 10, letterSpacing: 0.8),
+                      .copyWith(fontSize: 10, ),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -1044,15 +1002,9 @@ class _ValveCardState extends State<_ValveCard> {
         )
             : null,
         color: _hover ? null : style.color.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         boxShadow: _hover
-            ? [
-          BoxShadow(
-            color: style.color.withOpacity(0.4),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
-          ),
-        ]
+            ? AppShadows.md
             : [],
       ),
       child: Row(
@@ -1091,7 +1043,7 @@ class _ValveDetailsDialog extends StatelessWidget {
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.transparent,
       clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.xl)),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 880),
         child: Stack(
@@ -1197,7 +1149,7 @@ class _ValveDetailsDialog extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
               color: style.color.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -1205,9 +1157,9 @@ class _ValveDetailsDialog extends StatelessWidget {
                 Icon(style.icon, size: 14, color: style.color),
                 const SizedBox(width: 6),
                 Text(
-                  valve.category.toUpperCase(),
+                  valve.category,
                   style: AppTextStyles.badgeText(color: style.color)
-                      .copyWith(fontSize: 11, letterSpacing: 1),
+                      .copyWith(fontSize: 11, ),
                 ),
               ],
             ),
@@ -1236,7 +1188,7 @@ class _ValveDetailsDialog extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [style.color.withOpacity(0.14), style.color.withOpacity(0.04)],
                 ),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(AppRadius.lg),
                 border: Border.all(color: style.color.withOpacity(0.25)),
               ),
               child: Row(
@@ -1250,7 +1202,7 @@ class _ValveDetailsDialog extends StatelessWidget {
                         Text(
                           'FLOW CAPACITY (Kv)',
                           style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                              .copyWith(fontSize: 10.5, letterSpacing: 0.9),
+                              .copyWith(fontSize: 10.5, ),
                         ),
                         const SizedBox(height: 2),
                         Text(
@@ -1281,7 +1233,7 @@ class _ValveDetailsDialog extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: AppColors.bgOffWhite,
-                        borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(AppRadius.md),
                         border: Border.all(color: AppColors.borderLight),
                       ),
                       child: Row(
@@ -1292,7 +1244,7 @@ class _ValveDetailsDialog extends StatelessWidget {
                             height: 34,
                             decoration: BoxDecoration(
                               color: style.color.withOpacity(0.12),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(AppRadius.md),
                             ),
                             child: Icon(s[0] as IconData, size: 18, color: style.color),
                           ),
@@ -1302,9 +1254,9 @@ class _ValveDetailsDialog extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  (s[1] as String).toUpperCase(),
+                                  (s[1] as String),
                                   style: AppTextStyles.badgeText(color: AppColors.textMuted)
-                                      .copyWith(fontSize: 10, letterSpacing: 0.8),
+                                      .copyWith(fontSize: 10, ),
                                 ),
                                 const SizedBox(height: 3),
                                 Text(
@@ -1359,7 +1311,7 @@ class _ValveDetailsDialog extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: InkWell(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
               onTap: () => Navigator.pop(context),
               child: Ink(
                 padding: const EdgeInsets.symmetric(vertical: 15),
@@ -1367,14 +1319,8 @@ class _ValveDetailsDialog extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [style.color, Color.lerp(style.color, AppColors.accentCyan, 0.5)!],
                   ),
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: style.color.withOpacity(0.35),
-                      blurRadius: 14,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
+                  boxShadow: AppShadows.sm,
                 ),
                 child: Center(
                   child: Text('Close Details', style: AppTextStyles.buttonText()),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'theme/app_colors.dart';
+import 'widgets/about_section.dart';
 import 'widgets/fertigation_showcase_section.dart';
 import 'widgets/footer_section.dart';
 import 'widgets/header_nav.dart';
@@ -47,6 +48,7 @@ class GemTechHomePage extends StatefulWidget {
 class _GemTechHomePageState extends State<GemTechHomePage> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _heroKey = GlobalKey();
+  final GlobalKey _aboutKey = GlobalKey();
   final GlobalKey _oroGemEcosystemKey = GlobalKey();
   final GlobalKey _smartWaterKey = GlobalKey();
   final GlobalKey _fertigationKey = GlobalKey();
@@ -70,6 +72,10 @@ class _GemTechHomePageState extends State<GemTechHomePage> {
     switch (nav) {
       case 'Home':
         _scrollToSection(_heroKey);
+        break;
+      case 'About':
+      case 'About Us':
+        _scrollToSection(_aboutKey);
         break;
       case 'ORO GEM OS':
       case 'Ecosystem':
@@ -187,6 +193,14 @@ class _GemTechHomePageState extends State<GemTechHomePage> {
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.info_outline_rounded, color: AppColors.primaryTeal),
+                title: const Text('About Us'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _handleNavSelected('About');
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.hub_rounded, color: AppColors.primaryTeal),
                 title: const Text('ORO GEM OS & Ecosystem'),
                 onTap: () {
@@ -278,6 +292,11 @@ class _GemTechHomePageState extends State<GemTechHomePage> {
                   key: _heroKey,
                   onDownloadApp: _showGetAppDialog,
                   onNavSelected: _handleNavSelected,
+                ),
+                AboutSection(
+                  key: _aboutKey,
+                  onNavSelected: _handleNavSelected,
+                  onBecomePartner: () => _handleNavSelected('Selector'),
                 ),
                 ProductSelectorSection(
                   key: _selectorKey,

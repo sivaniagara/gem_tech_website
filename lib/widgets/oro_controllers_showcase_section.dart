@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/app_design.dart';
 
 // ─────────────────────────────────────────────────────────────
 //  ORO CONTROLLERS SERIES - ASSETS (rename your images to these in assets/images/)
@@ -258,7 +259,7 @@ class _OroControllersShowcaseSectionState
                             horizontal: 16, vertical: 6),
                         decoration: BoxDecoration(
                           color: const Color(0xFF0284C7).withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(AppRadius.lg),
                           border: Border.all(
                             color: const Color(0xFF0284C7).withValues(alpha: 0.5),
                           ),
@@ -270,12 +271,11 @@ class _OroControllersShowcaseSectionState
                                 size: 16, color: Color(0xFF38BDF8)),
                             SizedBox(width: 8),
                             Text(
-                              'SMART IRRIGATION CONTROLLERS',
+                              'Smart irrigation controllers',
                               style: TextStyle(
                                 color: Color(0xFF38BDF8),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
-                                letterSpacing: 1.2,
                               ),
                             ),
                           ],
@@ -352,7 +352,7 @@ class _OroControllersShowcaseSectionState
           child: Column(
             children: [
               Text(
-                'MODEL EXPLORER',
+                'Model explorer',
                 style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
               ),
               const SizedBox(height: 6),
@@ -378,7 +378,7 @@ class _OroControllersShowcaseSectionState
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
               color: AppColors.bgLightGrey,
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(AppRadius.xl),
               border: Border.all(color: AppColors.borderLight),
             ),
             child: Wrap(
@@ -392,18 +392,12 @@ class _OroControllersShowcaseSectionState
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                     decoration: BoxDecoration(
                       color: isSelected ? model.brandColor : Colors.transparent,
                       borderRadius: BorderRadius.circular(25),
                       boxShadow: isSelected
-                          ? [
-                              BoxShadow(
-                                color: model.brandColor.withValues(alpha: 0.35),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ]
+                          ? AppShadows.sm
                           : null,
                     ),
                     child: Text(
@@ -411,7 +405,7 @@ class _OroControllersShowcaseSectionState
                       style: TextStyle(
                         color: isSelected ? Colors.white : AppColors.textDark,
                         fontWeight:
-                            isSelected ? FontWeight.w700 : FontWeight.w600,
+                        isSelected ? FontWeight.w700 : FontWeight.w600,
                         fontSize: 15,
                       ),
                     ),
@@ -430,40 +424,34 @@ class _OroControllersShowcaseSectionState
             key: ValueKey(_selectedControllerIndex),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(AppRadius.xl),
               border: Border.all(
                   color: activeModel.brandColor.withValues(alpha: 0.3),
                   width: 1.5),
-              boxShadow: [
-                BoxShadow(
-                  color: activeModel.brandColor.withValues(alpha: 0.08),
-                  blurRadius: 24,
-                  offset: const Offset(0, 8),
-                ),
-              ],
+              boxShadow: AppShadows.md,
             ),
             padding: EdgeInsets.all(isDesktop ? 36 : 24),
             child: isDesktop
                 ? Row(
-                    children: [
-                      Expanded(
-                        flex: 12,
-                        child: _buildControllerDetailsLeft(activeModel),
-                      ),
-                      const SizedBox(width: 40),
-                      Expanded(
-                        flex: 10,
-                        child: _buildControllerImageRight(activeModel),
-                      ),
-                    ],
-                  )
+              children: [
+                Expanded(
+                  flex: 12,
+                  child: _buildControllerDetailsLeft(activeModel),
+                ),
+                const SizedBox(width: 40),
+                Expanded(
+                  flex: 10,
+                  child: _buildControllerImageRight(activeModel),
+                ),
+              ],
+            )
                 : Column(
-                    children: [
-                      _buildControllerDetailsLeft(activeModel),
-                      const SizedBox(height: 24),
-                      _buildControllerImageRight(activeModel),
-                    ],
-                  ),
+              children: [
+                _buildControllerDetailsLeft(activeModel),
+                const SizedBox(height: 24),
+                _buildControllerImageRight(activeModel),
+              ],
+            ),
           ),
         ),
       ],
@@ -480,7 +468,7 @@ class _OroControllersShowcaseSectionState
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
                 color: model.brandColor.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
               ),
               child: Text(
                 model.category,
@@ -536,7 +524,7 @@ class _OroControllersShowcaseSectionState
         ),
         const SizedBox(height: 10),
         ...model.highlights.map(
-          (h) => Padding(
+              (h) => Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -567,7 +555,7 @@ class _OroControllersShowcaseSectionState
       height: 300,
       decoration: BoxDecoration(
         color: AppColors.bgLightGrey,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.borderLight),
       ),
       clipBehavior: Clip.antiAlias,
@@ -596,7 +584,7 @@ class _OroControllersShowcaseSectionState
           child: Column(
             children: [
               Text(
-                'SPECIFICATION COMPARISON',
+                'Specification comparison',
                 style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
               ),
               const SizedBox(height: 6),
@@ -619,22 +607,16 @@ class _OroControllersShowcaseSectionState
           width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             border: Border.all(color: AppColors.borderLight),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.04),
-                blurRadius: 16,
-                offset: const Offset(0, 4),
-              ),
-            ],
+            boxShadow: AppShadows.md,
           ),
           clipBehavior: Clip.antiAlias,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
               headingRowColor:
-                  WidgetStateProperty.all(const Color(0xFFF8FAFC)),
+              WidgetStateProperty.all(const Color(0xFFF8FAFC)),
               dataRowMinHeight: 52,
               dataRowMaxHeight: 60,
               columnSpacing: isDesktop ? 36 : 20,
@@ -811,7 +793,7 @@ class _OroControllersShowcaseSectionState
           child: Column(
             children: [
               Text(
-                'FLEXIBLE STRATEGIES',
+                'Flexible strategies',
                 style: AppTextStyles.badgeText(color: AppColors.primaryTeal),
               ),
               const SizedBox(height: 6),
@@ -835,16 +817,16 @@ class _OroControllersShowcaseSectionState
             final cardWidth = isDesktop
                 ? (constraints.maxWidth - 2 * 20) / 3
                 : (constraints.maxWidth > 600
-                    ? (constraints.maxWidth - 20) / 2
-                    : constraints.maxWidth);
+                ? (constraints.maxWidth - 20) / 2
+                : constraints.maxWidth);
             return Wrap(
               spacing: 20,
               runSpacing: 20,
               children: modes
                   .map((m) => SizedBox(
-                        width: cardWidth,
-                        child: _buildModeCard(m),
-                      ))
+                width: cardWidth,
+                child: _buildModeCard(m),
+              ))
                   .toList(),
             );
           },
@@ -858,15 +840,9 @@ class _OroControllersShowcaseSectionState
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.borderLight),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: AppShadows.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -875,7 +851,7 @@ class _OroControllersShowcaseSectionState
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: m.color.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Icon(m.icon, color: m.color, size: 24),
           ),
@@ -949,14 +925,8 @@ class _OroControllersShowcaseSectionState
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        boxShadow: AppShadows.md,
       ),
       padding: EdgeInsets.all(isDesktop ? 40 : 24),
       child: Column(
@@ -982,12 +952,11 @@ class _OroControllersShowcaseSectionState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'INDUSTRIAL GRADE RELIABILITY',
+                      'Industrial-grade reliability',
                       style: TextStyle(
                         color: Color(0xFF38BDF8),
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 1.2,
                       ),
                     ),
                     Text(
@@ -1008,49 +977,49 @@ class _OroControllersShowcaseSectionState
               final cardWidth = isDesktop
                   ? (constraints.maxWidth - 2 * 20) / 3
                   : (constraints.maxWidth > 600
-                      ? (constraints.maxWidth - 20) / 2
-                      : constraints.maxWidth);
+                  ? (constraints.maxWidth - 20) / 2
+                  : constraints.maxWidth);
               return Wrap(
                 spacing: 20,
                 runSpacing: 20,
                 children: protections
                     .map((p) => SizedBox(
-                          width: cardWidth,
-                          child: Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.05),
-                              borderRadius: BorderRadius.circular(18),
-                              border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.1)),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Icon(p.icon,
-                                    color: const Color(0xFF38BDF8), size: 24),
-                                const SizedBox(height: 12),
-                                Text(
-                                  p.title,
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  p.desc,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xFF94A3B8),
-                                    height: 1.45,
-                                  ),
-                                ),
-                              ],
-                            ),
+                  width: cardWidth,
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.05),
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
+                      border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.1)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(p.icon,
+                            color: const Color(0xFF38BDF8), size: 24),
+                        const SizedBox(height: 12),
+                        Text(
+                          p.title,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
                           ),
-                        ))
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          p.desc,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFF94A3B8),
+                            height: 1.45,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ))
                     .toList(),
               );
             },
@@ -1067,31 +1036,31 @@ class _OroControllersShowcaseSectionState
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFFF8FAFC),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         border: Border.all(color: AppColors.borderLight),
       ),
       padding: EdgeInsets.all(isDesktop ? 36 : 24),
       child: isDesktop
           ? Row(
-              children: [
-                Expanded(
-                  flex: 12,
-                  child: _buildAppTextLeft(),
-                ),
-                const SizedBox(width: 40),
-                Expanded(
-                  flex: 10,
-                  child: _buildAppImageRight(),
-                ),
-              ],
-            )
+        children: [
+          Expanded(
+            flex: 12,
+            child: _buildAppTextLeft(),
+          ),
+          const SizedBox(width: 40),
+          Expanded(
+            flex: 10,
+            child: _buildAppImageRight(),
+          ),
+        ],
+      )
           : Column(
-              children: [
-                _buildAppTextLeft(),
-                const SizedBox(height: 24),
-                _buildAppImageRight(),
-              ],
-            ),
+        children: [
+          _buildAppTextLeft(),
+          const SizedBox(height: 24),
+          _buildAppImageRight(),
+        ],
+      ),
     );
   }
 
@@ -1103,10 +1072,10 @@ class _OroControllersShowcaseSectionState
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
           decoration: BoxDecoration(
             color: const Color(0xFF10B981).withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppRadius.md),
           ),
           child: const Text(
-            'REMOTE CLOUD CONNECTIVITY',
+            'Remote cloud connectivity',
             style: TextStyle(
               color: Color(0xFF10B981),
               fontWeight: FontWeight.w700,
@@ -1157,7 +1126,7 @@ class _OroControllersShowcaseSectionState
             child: Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
                   child: InteractiveViewer(
                     maxScale: 4.0,
                     child: Image.asset(
@@ -1186,15 +1155,9 @@ class _OroControllersShowcaseSectionState
           height: 320,
           decoration: BoxDecoration(
             color: const Color(0xFF003F47),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
             border: Border.all(color: AppColors.borderLight, width: 1.5),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.12),
-                blurRadius: 24,
-                offset: const Offset(0, 8),
-              ),
-            ],
+            boxShadow: AppShadows.md,
           ),
           clipBehavior: Clip.antiAlias,
           child: Column(
@@ -1222,7 +1185,7 @@ class _OroControllersShowcaseSectionState
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.25),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
                         alignment: Alignment.centerLeft,
                         child: const Row(
@@ -1246,7 +1209,7 @@ class _OroControllersShowcaseSectionState
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
                         color: const Color(0xFF10B981).withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(AppRadius.md),
                       ),
                       child: const Row(
                         children: [
@@ -1289,7 +1252,7 @@ class _OroControllersShowcaseSectionState
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.7),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
@@ -1374,7 +1337,7 @@ class _SeriesBadge extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: color.withValues(alpha: 0.4)),
       ),
       child: Row(
@@ -1428,7 +1391,7 @@ class _SpecChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: AppColors.bgLightGrey,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: AppColors.borderLight),
       ),
       child: Row(
@@ -1462,7 +1425,7 @@ class _AppFeaturePill extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: AppColors.borderLight),
       ),
       child: Row(

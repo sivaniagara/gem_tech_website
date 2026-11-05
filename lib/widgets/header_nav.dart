@@ -2,63 +2,79 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import 'motion.dart';
+import '../theme/app_design.dart';
 
 class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onGetAppPressed;
   final Function(String)? onNavSelected;
   final bool isTransparent;
 
+  /// Which nav item is highlighted. Pass the section currently in view
+  /// (e.g. from your scroll listener) so the highlight follows the page.
+  final String activeItem;
+
   const HeaderNav({
     super.key,
     this.onGetAppPressed,
     this.onNavSelected,
     this.isTransparent = false,
+    this.activeItem = 'Home',
   });
 
   @override
   Size get preferredSize => const Size.fromHeight(90);
+
+  static const _links = <String>[
+    'Home',
+    'About',
+    'ORO GEM OS',
+    'Smart Water',
+    'Fertigation',
+    'Controllers',
+    'Sensors',
+    'Valves',
+    'AI System',
+  ];
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isDesktop = screenWidth >= 900;
 
-    if (!isDesktop) {
-      // Mobile Top Bar: Transparent brand logo and sleek glass menu icon
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Left Logo
-            InkWell(
+    // One entrance for the whole bar: slides down and fades in on load.
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: Motion.reduced(context)
+          ? Duration.zero
+          : const Duration(milliseconds: 800),
+      curve: Curves.easeOutCubic,
+      builder: (context, v, child) => Opacity(
+        opacity: v,
+        child: Transform.translate(offset: Offset(0, -18 * (1 - v)), child: child),
+      ),
+      child: isDesktop
+          ? _buildDesktop(context, screenWidth)
+          : _buildMobile(context),
+    );
+  }
+
+  // ───────────────────────── Mobile ─────────────────────────
+  Widget _buildMobile(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          PressableScale(
+            hoverScale: 1.03,
+            child: InkWell(
               onTap: () => onNavSelected?.call('Home'),
               borderRadius: BorderRadius.circular(16),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFF00C6FF).withOpacity(0.4),
-                          blurRadius: 10,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.eco_rounded,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
+                  const _LogoMark(size: 36, radius: 10, iconSize: 20),
                   const SizedBox(width: 8),
                   const Text(
                     'ORO GEM',
@@ -77,100 +93,77 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   ),
                   const SizedBox(width: 4),
-                  Container(
-                    width: 5,
-                    height: 5,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF00C6FF),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
+                  const _PulseDot(size: 5),
                 ],
               ),
             ),
-
-            // Right Drawer Menu Button
-            Material(
+          ),
+          PressableScale(
+            hoverScale: 1.08,
+            child: Material(
               color: Colors.transparent,
               child: InkWell(
                 onTap: () => Scaffold.of(context).openEndDrawer(),
                 borderRadius: BorderRadius.circular(25),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF0F172A).withOpacity(0.65),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.3),
-                      width: 1.2,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 10,
-                        offset: const Offset(0, 3),
+                child: ClipOval(
+                  child: BackdropFilter(
+                    filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF0F172A).withValues(alpha: 0.6),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.3),
+                          width: 1.2,
+                        ),
                       ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.menu_rounded,
-                    size: 22,
-                    color: Colors.white,
+                      child: const Icon(
+                        Icons.menu_rounded,
+                        size: 22,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
-      );
-    }
+          ),
+        ],
+      ),
+    );
+  }
 
-    // Desktop Layout
+  // ───────────────────────── Desktop ─────────────────────────
+  Widget _buildDesktop(BuildContext context, double width) {
+    // Tighter spacing on narrow desktops so 8 links never overflow.
+    final compact = width < 1320;
+    // Below this width only the logo mark is shown so 9 links still fit.
+    final tight = width < 1100;
+    final showCta = width >= 1440 && onGetAppPressed != null;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: tight ? 16 : (compact ? 24 : 60), vertical: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Left Island: Premium Brand Logo
+          // Brand island
           _HeaderIsland(
             isTransparent: isTransparent,
-            child: InkWell(
-              onTap: () => onNavSelected?.call('Home'),
-              borderRadius: BorderRadius.circular(16),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFF00C6FF).withOpacity(0.4),
-                            blurRadius: 10,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.eco_rounded,
-                        color: Colors.white,
-                        size: 24,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
+            child: PressableScale(
+              hoverScale: 1.03,
+              child: InkWell(
+                onTap: () => onNavSelected?.call('Home'),
+                borderRadius: BorderRadius.circular(16),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const _LogoMark(size: 40, radius: 12, iconSize: 24),
+                      if (!tight) ...[
+                        const SizedBox(width: 12),
                         ShaderMask(
                           shaderCallback: (bounds) => const LinearGradient(
                             colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
@@ -194,76 +187,180 @@ class HeaderNav extends StatelessWidget implements PreferredSizeWidget {
                             fontSize: 22,
                             fontWeight: FontWeight.w800,
                             color: AppColors.textDark,
-                            letterSpacing: 0.8,
                           ),
                         ),
                         const SizedBox(width: 6),
-                        Container(
-                          width: 6,
-                          height: 6,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF00C6FF),
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0xFF00C6FF).withOpacity(0.6),
-                                blurRadius: 6,
-                              ),
-                            ],
-                          ),
-                        ),
+                        const _PulseDot(size: 6),
                       ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
 
-          // Right Island: Desktop Nav Links
-          _HeaderIsland(
-            isTransparent: isTransparent,
-            child: Row(
+          // Nav island
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: _HeaderIsland(
+                  isTransparent: isTransparent,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      for (final title in _links)
+                        _NavLink(
+                          title: title,
+                          compact: compact,
+                          tight: tight,
+                          isSelected: title == activeItem,
+                          isAi: title == 'AI System',
+                          onTap: () => onNavSelected?.call(title),
+                        ),
+                      if (showCta) ...[
+                        const SizedBox(width: 6),
+                        _GetAppButton(onTap: onGetAppPressed!),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ───────────────────────── Pieces ─────────────────────────
+
+class _LogoMark extends StatelessWidget {
+  final double size;
+  final double radius;
+  final double iconSize;
+
+  const _LogoMark({
+    required this.size,
+    required this.radius,
+    required this.iconSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(radius),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF00C6FF).withValues(alpha: 0.4),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Icon(Icons.eco_rounded, color: Colors.white, size: iconSize),
+    );
+  }
+}
+
+/// The small cyan dot after the logo; softly pulses like a "live" indicator.
+class _PulseDot extends StatefulWidget {
+  final double size;
+  const _PulseDot({required this.size});
+
+  @override
+  State<_PulseDot> createState() => _PulseDotState();
+}
+
+class _PulseDotState extends State<_PulseDot>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _c =
+  AnimationController(vsync: this, duration: const Duration(milliseconds: 1800));
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (Motion.reduced(context)) {
+      _c.stop();
+    } else if (!_c.isAnimating) {
+      _c.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _c,
+      builder: (context, _) => Container(
+        width: widget.size,
+        height: widget.size,
+        decoration: BoxDecoration(
+          color: const Color(0xFF00C6FF),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF00C6FF).withValues(alpha: 0.35 + 0.35 * _c.value),
+              blurRadius: 4 + 6 * _c.value,
+              spreadRadius: 1.5 * _c.value,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GetAppButton extends StatelessWidget {
+  final VoidCallback onTap;
+  const _GetAppButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return PressableScale(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(25),
+          child: Ink(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+            decoration: BoxDecoration(
+              color: AppColors.accentBlueDeep,
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _NavLink(
-                  title: 'Home',
-                  isSelected: true,
-                  onTap: () => onNavSelected?.call('Home'),
-                ),
-                _NavLink(
-                  title: 'ORO GEM OS',
-                  onTap: () => onNavSelected?.call('ORO GEM OS'),
-                ),
-                _NavLink(
-                  title: 'Smart Water',
-                  onTap: () => onNavSelected?.call('Smart Water'),
-                ),
-                _NavLink(
-                  title: 'Fertigation',
-                  onTap: () => onNavSelected?.call('Fertigation'),
-                ),
-                _NavLink(
-                  title: 'Controllers',
-                  onTap: () => onNavSelected?.call('Controllers'),
-                ),
-                _NavLink(
-                  title: 'Sensors',
-                  onTap: () => onNavSelected?.call('Sensors'),
-                ),
-                _NavLink(
-                  title: 'Valves',
-                  onTap: () => onNavSelected?.call('Valves'),
-                ),
-                _NavLink(
-                  title: 'AI System',
-                  isAi: true,
-                  onTap: () => onNavSelected?.call('AI System'),
+                Icon(Icons.phone_android_rounded, size: 16, color: Colors.white),
+                SizedBox(width: 6),
+                Text(
+                  'Get App',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -280,28 +377,15 @@ class _HeaderIsland extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget island = Container(
+    // Animates between solid and frosted when the parent flips isTransparent.
+    final island = AnimatedContainer(
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.easeOut,
       decoration: BoxDecoration(
-        color: isTransparent
-            ? Colors.white.withOpacity(0.92)
-            : Colors.white,
+        color: Colors.white.withValues(alpha: isTransparent ? 0.88 : 1.0),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(
-          color: Colors.white,
-          width: 1.8,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-          ),
-          BoxShadow(
-            color: const Color(0xFF00C6FF).withOpacity(0.08),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(color: AppColors.borderLight),
+        boxShadow: AppShadows.md,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       child: child,
@@ -316,7 +400,6 @@ class _HeaderIsland extends StatelessWidget {
         ),
       );
     }
-
     return island;
   }
 }
@@ -325,12 +408,16 @@ class _NavLink extends StatefulWidget {
   final String title;
   final bool isSelected;
   final bool isAi;
+  final bool compact;
+  final bool tight;
   final VoidCallback? onTap;
 
   const _NavLink({
     required this.title,
     this.isSelected = false,
     this.isAi = false,
+    this.compact = false,
+    this.tight = false,
     this.onTap,
   });
 
@@ -344,61 +431,77 @@ class _NavLinkState extends State<_NavLink> {
   @override
   Widget build(BuildContext context) {
     final active = widget.isSelected;
+    final hPad = widget.tight ? 9.0 : (widget.compact ? 12.0 : 18.0);
+    final textColor = active
+        ? Colors.white
+        : (isHovered ? const Color(0xFF0072FF) : AppColors.textDark);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 2),
       child: InkWell(
         onTap: widget.onTap,
         onHover: (hover) => setState(() => isHovered = hover),
         borderRadius: BorderRadius.circular(25),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          duration: const Duration(milliseconds: 220),
+          curve: Curves.easeOut,
+          padding: EdgeInsets.symmetric(horizontal: hPad, vertical: 10),
           decoration: BoxDecoration(
-            gradient: active
-                ? const LinearGradient(
-                    colors: [Color(0xFF00C6FF), Color(0xFF0072FF)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  )
-                : null,
-            color: !active && isHovered
-                ? const Color(0xFF00C6FF).withOpacity(0.08)
-                : (active ? null : Colors.transparent),
+            color: active
+                ? AppColors.accentBlueDeep
+                : (isHovered ? AppColors.primarySoft : null),
             borderRadius: BorderRadius.circular(25),
-            boxShadow: active
-                ? [
-                    BoxShadow(
-                      color: const Color(0xFF00C6FF).withOpacity(0.35),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
-                    ),
-                  ]
-                : null,
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
             children: [
-              if (widget.isAi) ...[
-                Icon(
-                  Icons.auto_awesome_rounded,
-                  size: 15,
-                  color: active
-                      ? Colors.white
-                      : (isHovered ? const Color(0xFF0072FF) : const Color(0xFF00C6FF)),
-                ),
-                const SizedBox(width: 6),
-              ],
-              Text(
-                widget.title,
-                style: AppTextStyles.navLink(
-                  isSelected: active || isHovered,
-                ).copyWith(
-                  color: active
-                      ? Colors.white
-                      : (isHovered ? const Color(0xFF0072FF) : AppColors.textDark),
-                  fontWeight: active ? FontWeight.w700 : (isHovered ? FontWeight.w600 : FontWeight.w500),
-                  fontSize: 14.5,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (widget.isAi) ...[
+                    AnimatedRotation(
+                      turns: isHovered ? 0.25 : 0,
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeOutBack,
+                      child: Icon(
+                        Icons.auto_awesome_rounded,
+                        size: 15,
+                        color: active
+                            ? Colors.white
+                            : (isHovered
+                            ? const Color(0xFF0072FF)
+                            : const Color(0xFF00C6FF)),
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                  ],
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 200),
+                    style: AppTextStyles.navLink(isSelected: active || isHovered)
+                        .copyWith(
+                      color: textColor,
+                      fontWeight: active
+                          ? FontWeight.w700
+                          : (isHovered ? FontWeight.w600 : FontWeight.w500),
+                      fontSize: widget.tight ? 13.0 : (widget.compact ? 13.5 : 14.5),
+                    ),
+                    child: Text(widget.title),
+                  ),
+                ],
+              ),
+              // Underline that grows from the centre on hover
+              Positioned(
+                bottom: -6,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 220),
+                  curve: Curves.easeOut,
+                  height: 2,
+                  width: (!active && isHovered) ? 18 : 0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF00C6FF),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
               ),
             ],
